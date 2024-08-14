@@ -1,5 +1,5 @@
 import {TouchableOpacityBoxProps} from '../Box/Box.tsx';
-import {ThemeColours} from '../../theme/theme.ts';
+import {ThemeColours} from '@theme';
 import {ButtonPreset} from './Button.tsx';
 
 interface ButtonUI {
