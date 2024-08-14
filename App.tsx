@@ -1,6 +1,6 @@
 import React from 'react';
-import {SafeAreaView, TextInput, View} from 'react-native';
-import {Text, Icon, Button, Box} from '@components';
+import {SafeAreaView, View} from 'react-native';
+import {Text, Button, Box, TextInput, Icon} from '@components';
 import {ThemeProvider} from '@shopify/restyle';
 import {theme} from '@theme';
 
@@ -15,34 +15,21 @@ function App(): React.JSX.Element {
           <Text preset="paragraphLarge" mb="s40">
             Enter your credentials to sing in!
           </Text>
-          <Box mb="s20">
-            <TextInput
-              style={{
-                borderWidth: 1,
-                height: 50,
-                borderRadius: 12,
-                paddingLeft: 20,
-              }}
-              placeholder="E-mail"
-            />
-          </Box>
+          <TextInput
+            boxProps={{marginBottom: 's20'}}
+            errorMessage="Error here in name"
+            placeholder="E-mail"
+            label="E-mail"
+          />
           <Box>
             <TextInput
-              style={{
-                borderWidth: 1,
-                height: 50,
-                borderRadius: 12,
-                paddingLeft: 20,
-              }}
+              boxProps={{marginBottom: 's10'}}
               placeholder="Password"
+              label="Password"
+              RightComponent={<Icon name="eyeOn" color="gray2" />}
             />
           </Box>
-          <Text
-            color="primary"
-            preset="paragraphSmall"
-            bold
-            marginTop="s10"
-            marginBottom="s48">
+          <Text color="primary" preset="paragraphSmall" bold marginBottom="s48">
             Forgot Password
           </Text>
           <Button title="Sign In" />
