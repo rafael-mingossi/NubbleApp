@@ -34,6 +34,7 @@ import {
   ChevronRightIcon,
   MessageRoundIcon,
 } from '@assets';
+import {Pressable} from 'react-native';
 
 export interface IconBase {
   size?: number;
@@ -44,6 +45,7 @@ interface Props {
   name: IconName;
   color?: ThemeColours;
   size?: number;
+  onPress?: () => void;
 }
 
 // type IconType = typeof IconRegistry;
@@ -83,9 +85,22 @@ const iconRegistry = {
   trash: TrashIcon,
 };
 
-export function Icon({name, color = 'backgroundContrast', size}: Props) {
+export function Icon({
+  name,
+  onPress,
+  color = 'backgroundContrast',
+  size,
+}: Props) {
   const {colors} = useAppTheme();
   const SVGIcon = iconRegistry[name];
+
+  if (onPress) {
+    return (
+      <Pressable onPress={onPress} hitSlop={10}>
+        <SVGIcon color={colors[color]} size={size} />
+      </Pressable>
+    );
+  }
 
   return <SVGIcon color={colors[color]} size={size} />;
 }
