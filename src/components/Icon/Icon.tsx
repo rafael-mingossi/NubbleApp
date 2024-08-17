@@ -1,6 +1,6 @@
 import React from 'react';
-import {ThemeColours} from '@theme';
-import {useAppTheme} from '@hooks';
+import {Pressable} from 'react-native';
+
 import {
   ArrowLeftIcon,
   SearchIcon,
@@ -34,7 +34,9 @@ import {
   ChevronRightIcon,
   MessageRoundIcon,
 } from '@assets';
-import {Pressable} from 'react-native';
+
+import {useAppTheme} from '@hooks';
+import {ThemeColours} from '@theme';
 
 export interface IconBase {
   size?: number;

@@ -1,12 +1,15 @@
 import React, {ReactNode} from 'react';
+import {KeyboardAvoidingView, Platform, StyleSheet} from 'react-native';
+
+import {useNavigation} from '@react-navigation/native';
+
 import {Box, Icon, Text, TouchableOpacityBox} from '@components';
 import {useAppSafeArea, useAppTheme} from '@hooks';
-import {KeyboardAvoidingView, Platform} from 'react-native';
+
 import {
   ScrollViewContainer,
   ViewContainer,
 } from './components/ScreenContainer.tsx';
-import {useNavigation} from '@react-navigation/native';
 
 interface ScreenProps {
   children: ReactNode;
@@ -27,7 +30,7 @@ export function Screen({
 
   return (
     <KeyboardAvoidingView
-      style={{flex: 1}}
+      style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <Container backgroundColor={colors.background}>
         <Box
@@ -52,3 +55,7 @@ export function Screen({
     </KeyboardAvoidingView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {flex: 1},
+});
