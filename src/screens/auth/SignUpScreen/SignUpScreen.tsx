@@ -1,13 +1,39 @@
 import React from 'react';
-import {Button, PasswordInput, Screen, Text, TextInput} from '@components';
+import {
+  Button,
+  FormPasswordInput,
+  FormTextInput,
+  Screen,
+  Text,
+} from '@components';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamsList} from '@routes';
 import {useResetNavigationSuccess} from '@hooks';
+import {useForm} from 'react-hook-form';
+import {signUpSchema, SignUpSchema} from './signUpSchema.ts';
+import {zodResolver} from '@hookform/resolvers/zod';
+
+type SignUpFormType = {
+  username: string;
+  fullName: string;
+  email: string;
+  password: string;
+};
 
 type ScreenProps = NativeStackScreenProps<RootStackParamsList, 'SignUpScreen'>;
 
 export function SignUpScreen({navigation}: ScreenProps) {
   const {reset} = useResetNavigationSuccess();
+  const {control, formState, handleSubmit} = useForm<SignUpSchema>({
+    resolver: zodResolver(signUpSchema),
+    defaultValues: {
+      username: '',
+      fullName: '',
+      email: '',
+      password: '',
+    },
+    mode: 'onChange',
+  });
 
   function submitForm() {
     reset({
@@ -25,27 +51,40 @@ export function SignUpScreen({navigation}: ScreenProps) {
       <Text preset="headingLarge" mb="s32">
         Create an account
       </Text>
-      <TextInput
+      <FormTextInput
         label="Your username"
         placeholder="@"
         boxProps={{marginBottom: 's20'}}
+        control={control}
+        name={'username'}
       />
-      <TextInput
+      <FormTextInput
         label="Full name"
         placeholder="Enter your full name"
         boxProps={{marginBottom: 's20'}}
+        control={control}
+        name={'fullName'}
       />
-      <TextInput
+      <FormTextInput
+        placeholder="E-mail"
         label="E-mail"
-        placeholder="Enter your email"
         boxProps={{marginBottom: 's20'}}
+        name="email"
+        control={control}
       />
-      <PasswordInput
+      <FormPasswordInput
+        control={control}
+        name="password"
         label="Password"
         placeholder="Enter your password"
         boxProps={{marginBottom: 's48'}}
       />
-      <Button title="Create account" onPress={submitForm} />
+
+      <Button
+        disabled={!formState.isValid}
+        title="Create account"
+        onPress={handleSubmit(submitForm)}
+      />
     </Screen>
   );
 }

@@ -1,8 +1,14 @@
 import React from 'react';
-import {Button, Screen, Text, TextInput} from '@components';
+import {Button, FormTextInput, Screen, Text} from '@components';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamsList} from '@routes';
 import {useResetNavigationSuccess} from '@hooks';
+import {useForm} from 'react-hook-form';
+import {
+  forgotPasswordSchema,
+  ForgotPasswordSchema,
+} from './forgotPasswordSchema.ts';
+import {zodResolver} from '@hookform/resolvers/zod';
 
 type ScreenProps = NativeStackScreenProps<
   RootStackParamsList,
@@ -11,6 +17,13 @@ type ScreenProps = NativeStackScreenProps<
 
 export function ForgotPasswordScreen({navigation}: ScreenProps) {
   const {reset} = useResetNavigationSuccess();
+  const {control, formState, handleSubmit} = useForm<ForgotPasswordSchema>({
+    resolver: zodResolver(forgotPasswordSchema),
+    defaultValues: {
+      email: '',
+    },
+    mode: 'onChange',
+  });
 
   function recoverPassword() {
     reset({
@@ -33,12 +46,18 @@ export function ForgotPasswordScreen({navigation}: ScreenProps) {
         Enter your e-mail and we will send the instructions to reset your
         password
       </Text>
-      <TextInput
+      <FormTextInput
+        placeholder="E-mail"
         label="E-mail"
-        placeholder="Enter your email"
         boxProps={{marginBottom: 's40'}}
+        name="email"
+        control={control}
       />
-      <Button title="Recover Password" onPress={recoverPassword} />
+      <Button
+        disabled={!formState.isValid}
+        title="Recover Password"
+        onPress={handleSubmit(recoverPassword)}
+      />
     </Screen>
   );
 }

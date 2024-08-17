@@ -1,9 +1,9 @@
 import React from 'react';
-import {Text} from '../Text/Text.tsx';
 import {
   ActivityIndicator,
   TouchableOpacityBox,
   TouchableOpacityBoxProps,
+  Text,
 } from '@components';
 import {buttonPresets} from './buttonPresets.ts';
 
