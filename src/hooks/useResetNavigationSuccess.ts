@@ -1,4 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
+
 import {RootStackParamsList} from '@routes';
 
 //THE TS ERRORS HERE WERE FIXED WITH /routes/navigationTypes.ts
