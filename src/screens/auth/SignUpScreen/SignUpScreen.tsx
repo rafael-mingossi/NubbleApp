@@ -10,15 +10,13 @@ import {
   Screen,
   Text,
 } from '@components';
-// import {NativeStackScreenProps} from '@react-navigation/native-stack';
-// import {RootStackParamsList} from '@routes';
 import {useResetNavigationSuccess} from '@hooks';
+import {AuthScreenProps} from '@routes';
 
 import {signUpSchema, SignUpSchema} from './signUpSchema.ts';
 
-// type ScreenProps = NativeStackScreenProps<RootStackParamsList, 'SignUpScreen'>;
-// {navigation}: ScreenProps
-export function SignUpScreen() {
+export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
+  console.log(navigation);
   const {reset} = useResetNavigationSuccess();
   const {control, formState, handleSubmit} = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
