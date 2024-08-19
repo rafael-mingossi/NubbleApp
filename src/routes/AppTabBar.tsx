@@ -2,29 +2,28 @@ import React from 'react';
 
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 
-import {Box, Icon, Text, TouchableOpacityBox} from '@components';
-
-// const mapScreenToProps = {
-//   HomeScreen: {
-//     label: 'Home',
-//     icon: {
-//       focused: 'homeFill',
-//       unfocused: 'home',
-//     },
-//   },
-// };
+import {
+  Box,
+  Icon,
+  Text,
+  TouchableOpacityBox,
+  TextProps,
+  TouchableOpacityBoxProps,
+  BoxProps,
+} from '@components';
+import {useAppSafeArea} from '@hooks';
+import {AppTabBottomTabParamList, mapScreenToProps} from '@routes';
+import {$shadowProps} from '@theme';
 
 export function AppTabBar({state, descriptors, navigation}: BottomTabBarProps) {
+  const {bottom} = useAppSafeArea();
   return (
-    <Box flexDirection="row">
+    <Box {...$boxWrapper} style={[{paddingBottom: bottom}, $shadowProps]}>
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
-        // const label =
-        //   options.tabBarLabel !== undefined
-        //     ? options.tabBarLabel
-        //     : options.title !== undefined
-        //     ? options.title
-        //     : route.name;
+
+        const tabItem =
+          mapScreenToProps[route.name as keyof AppTabBottomTabParamList];
 
         const isFocused = state.index === index;
 
@@ -49,19 +48,44 @@ export function AppTabBar({state, descriptors, navigation}: BottomTabBarProps) {
 
         return (
           <TouchableOpacityBox
-            alignItems="center"
-            accessibilityRole="button"
+            key={index}
+            {...$itemWrapper}
             accessibilityState={isFocused ? {selected: true} : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
             style={{flex: 1}}>
-            <Icon name={'home'} />
-            <Text>Home</Text>
+            <Icon
+              color={isFocused ? 'primary' : 'backgroundContrast'}
+              name={isFocused ? tabItem.icon.focused : tabItem.icon.unfocused}
+            />
+            <Text
+              {...$label}
+              color={isFocused ? 'primary' : 'backgroundContrast'}>
+              {tabItem.label}
+            </Text>
           </TouchableOpacityBox>
         );
       })}
     </Box>
   );
 }
+
+const $label: TextProps = {
+  semiBold: true,
+  marginTop: 's4',
+  preset: 'paragraphCaption',
+};
+
+const $itemWrapper: TouchableOpacityBoxProps = {
+  activeOpacity: 1,
+  alignItems: 'center',
+  accessibilityRole: 'button',
+};
+
+const $boxWrapper: BoxProps = {
+  paddingTop: 's12',
+  backgroundColor: 'background',
+  flexDirection: 'row',
+};

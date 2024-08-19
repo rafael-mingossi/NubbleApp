@@ -8,3 +8,6 @@ export * from './navigationType';
 
 ///COMPONENTS
 export * from './AppTabBar';
+
+///VARIABLES
+export * from './mapScreenToProps';
