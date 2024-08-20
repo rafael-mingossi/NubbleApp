@@ -4,6 +4,8 @@ import {FlatList, ListRenderItemInfo, ViewStyle} from 'react-native';
 import {Post, postService} from '@domain';
 
 import {PostItem, Screen} from '@components';
+
+import {HomeHeader} from './components/HomeHeader.tsx';
 // import {AppTabScreenProps} from '@routes';
 
 // {navigation}: AppTabScreenProps<'HomeScreen'>
@@ -24,6 +26,7 @@ export function HomeScreen() {
         showsVerticalScrollIndicator={false}
         data={postList}
         renderItem={renderItem}
+        ListHeaderComponent={<HomeHeader />}
         keyExtractor={item => item.id}
       />
     </Screen>

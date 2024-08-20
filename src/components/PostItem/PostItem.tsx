@@ -5,6 +5,7 @@ import {Post} from '@domain';
 import {Box} from '@components';
 
 import {PostActions} from './components/PostActions.tsx';
+import {PostBottom} from './components/PostBottom.tsx';
 import {PostHeader} from './components/PostHeader.tsx';
 import {PostImage} from './components/PostImage.tsx';
 
@@ -21,6 +22,11 @@ export function PostItem({post}: Props) {
         favoriteCount={post.favoriteCount}
         commentCount={post.commentCount}
         reactionCount={post.reactionCount}
+      />
+      <PostBottom
+        commentCount={post.commentCount}
+        text={post.text}
+        author={post.author}
       />
     </Box>
   );
