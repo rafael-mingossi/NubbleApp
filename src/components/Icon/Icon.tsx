@@ -1,6 +1,6 @@
 import React from 'react';
-import {ThemeColours} from '@theme';
-import {useAppTheme} from '@hooks';
+import {Pressable} from 'react-native';
+
 import {
   ArrowLeftIcon,
   SearchIcon,
@@ -35,15 +35,19 @@ import {
   MessageRoundIcon,
 } from '@assets';
 
+import {useAppTheme} from '@hooks';
+import {ThemeColours} from '@theme';
+
 export interface IconBase {
   size?: number;
   color?: string;
 }
 
-interface Props {
+export interface IconProps {
   name: IconName;
   color?: ThemeColours;
   size?: number;
+  onPress?: () => void;
 }
 
 // type IconType = typeof IconRegistry;
@@ -83,9 +87,22 @@ const iconRegistry = {
   trash: TrashIcon,
 };
 
-export function Icon({name, color = 'backgroundContrast', size}: Props) {
+export function Icon({
+  name,
+  onPress,
+  color = 'backgroundContrast',
+  size,
+}: IconProps) {
   const {colors} = useAppTheme();
   const SVGIcon = iconRegistry[name];
+
+  if (onPress) {
+    return (
+      <Pressable onPress={onPress} hitSlop={10}>
+        <SVGIcon color={colors[color]} size={size} />
+      </Pressable>
+    );
+  }
 
   return <SVGIcon color={colors[color]} size={size} />;
 }
