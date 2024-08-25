@@ -8,7 +8,5 @@ export * from './Post/useCases/usePostList.ts';
 // export * from './PostComment/postCommentAdapter.ts';
 // export * from './PostComment/useCases/usePostCommentList.ts';
 
-//HOOKS
-export * from './hooks/usePaginatedList.ts';
-
+export * from './Auth';
 export * from './PostComment';

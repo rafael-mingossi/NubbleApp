@@ -1,4 +1,5 @@
-import {PostComment, usePaginatedList} from '@domain';
+import {PostComment} from '@domain';
+import {usePaginatedList} from '@infra';
 
 import {postCommentService} from '../postCommentService.ts';
 

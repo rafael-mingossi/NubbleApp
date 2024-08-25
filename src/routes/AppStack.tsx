@@ -10,7 +10,7 @@ import {AppTabBottomTabParamList, AppTabNavigator} from './AppTabNavigator.tsx';
 export type AppStackParamsList = {
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
   SettingsScreen: undefined;
-  PostCommentScreen: {postId: number};
+  PostCommentScreen: {postId: number; postAuthorId: number};
 };
 
 const Stack = createNativeStackNavigator<AppStackParamsList>();
