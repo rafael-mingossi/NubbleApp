@@ -17,7 +17,13 @@ import {HomeHeader} from './components/HomeHeader.tsx';
 
 // {navigation}: AppTabScreenProps<'HomeScreen'>
 export function HomeScreen() {
-  const {loading, refresh, error, postList, fetchNextPage} = usePostList();
+  const {
+    loading,
+    refresh,
+    error,
+    list: postList,
+    fetchNextPage,
+  } = usePostList();
   const flatListRef = useRef<FlatList<Post>>(null);
   useScrollToTop(flatListRef);
 
@@ -43,7 +49,7 @@ export function HomeScreen() {
         ListEmptyComponent={
           <HomeEmpty loading={loading} error={error} refetch={refresh} />
         }
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id.toString()}
       />
     </Screen>
   );

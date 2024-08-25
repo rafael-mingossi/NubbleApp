@@ -1,10 +1,11 @@
 export interface Post {
-  id: string;
+  id: number;
   text: string;
   author: {
     profileURL: string;
     name: string;
     userName: string;
+    id: number;
   };
   imageURL: string;
   reactionCount: number;
@@ -38,20 +39,3 @@ export interface PostAPI {
     comments_count: string;
   };
 }
-
-// export interface User {
-//   id: number;
-//   first_name: string;
-//   last_name: string;
-//   username: string;
-//   email: string;
-//   profile_url: string;
-//   is_online: boolean;
-//   full_name: string;
-// }
-//
-// export interface Meta {
-//   like_count: string;
-//   favorite_count: string;
-//   comments_count: string;
-// }
