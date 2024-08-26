@@ -9,6 +9,7 @@ export * from './Screen/Screen';
 export * from './Text/Text';
 export * from './TextInput/TextInput';
 export * from './TextMessage/TextMessage';
+export * from './Toast/Toast';
 
 ///FORM
 export * from './Form/FormTextInput';
