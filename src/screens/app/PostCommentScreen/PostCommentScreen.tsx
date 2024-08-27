@@ -34,7 +34,6 @@ export function PostCommentScreen({
     );
   }
 
-  console.log(list);
   return (
     <Screen canGoBack title="Comments" flex={1}>
       <Box justifyContent="space-between" flex={1}>

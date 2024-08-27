@@ -1,5 +1,5 @@
 import {PostComment} from '@domain';
-import {usePaginatedList} from '@infra';
+import {QueryKeys, usePaginatedList} from '@infra';
 
 import {postCommentService} from '../postCommentService.ts';
 
@@ -8,5 +8,5 @@ export function usePostCommentList(postId: number) {
     return postCommentService.getListComments(postId, page);
   }
 
-  return usePaginatedList<PostComment>(getList);
+  return usePaginatedList<PostComment>([QueryKeys.PostCommentList], getList);
 }
