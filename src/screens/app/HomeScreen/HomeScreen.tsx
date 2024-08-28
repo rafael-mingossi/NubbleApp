@@ -18,9 +18,9 @@ import {HomeHeader} from './components/HomeHeader.tsx';
 // {navigation}: AppTabScreenProps<'HomeScreen'>
 export function HomeScreen() {
   const {
-    loading,
+    isLoading,
     refresh,
-    error,
+    isError,
     list: postList,
     fetchNextPage,
   } = usePostList();
@@ -41,13 +41,13 @@ export function HomeScreen() {
         renderItem={renderItem}
         onEndReached={fetchNextPage}
         onEndReachedThreshold={0.1}
-        refreshing={loading}
+        refreshing={isLoading}
         refreshControl={
-          <RefreshControl refreshing={loading} onRefresh={refresh} />
+          <RefreshControl refreshing={isLoading} onRefresh={refresh} />
         }
         ListHeaderComponent={<HomeHeader />}
         ListEmptyComponent={
-          <HomeEmpty loading={loading} error={error} refetch={refresh} />
+          <HomeEmpty loading={isLoading} error={isError} refetch={refresh} />
         }
         keyExtractor={item => item.id.toString()}
       />

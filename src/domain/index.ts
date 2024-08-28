@@ -10,3 +10,4 @@ export * from './Post/useCases/usePostList.ts';
 
 export * from './Auth';
 export * from './PostComment';
+export * from './User';
