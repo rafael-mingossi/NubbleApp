@@ -6,6 +6,10 @@ export interface MutationOptions<TData> {
   errorMessage?: string;
 }
 
+/**
+ * @deprecated this useMutation is no longer being used, it was used before tanstack
+ */
+
 export function useMutation<TVariables, TData>(
   mutationFn: (variables: TVariables) => Promise<TData>,
   options?: MutationOptions<TData>,
