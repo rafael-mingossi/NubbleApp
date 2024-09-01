@@ -50,7 +50,10 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
       mode: 'onChange',
     });
 
-  const usernameValidation = useAsyncValidation({watch, getFieldState});
+  const {usernameValidation, emailValidation} = useAsyncValidation({
+    watch,
+    getFieldState,
+  });
 
   function submitForm(formValues: SignUpSchema) {
     signUp(formValues);
@@ -91,9 +94,15 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
       <FormTextInput
         placeholder="E-mail"
         label="E-mail"
+        errorMessage={emailValidation.errorMessage}
         boxProps={{marginBottom: 's20'}}
         name="email"
         control={control}
+        RightComponent={
+          emailValidation.isFetching ? (
+            <ActivityIndicator size="small" />
+          ) : undefined
+        }
       />
       <FormPasswordInput
         control={control}
@@ -105,7 +114,11 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
 
       <Button
         loading={isLoading}
-        disabled={!formState.isValid || usernameValidation.notReady}
+        disabled={
+          !formState.isValid ||
+          usernameValidation.notReady ||
+          emailValidation.notReady
+        }
         title="Create account"
         onPress={handleSubmit(submitForm)}
       />
