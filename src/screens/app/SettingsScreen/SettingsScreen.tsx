@@ -1,14 +1,16 @@
 import React from 'react';
 
-import {Button, Screen, Text} from '@components';
-import {AppScreenProps} from '@routes';
+import {useAuthSignOut} from '@domain';
 
-export function SettingsScreen({navigation}: AppScreenProps<'SettingsScreen'>) {
-  console.log(navigation);
+import {Button, Screen, Text} from '@components';
+// import {AppScreenProps} from '@routes';
+
+export function SettingsScreen() {
+  const {signOut, isLoading} = useAuthSignOut();
   return (
     <Screen canGoBack>
       <Text preset="headingLarge">SETTINGS</Text>
-      <Button title="Settings" />
+      <Button title="Log out" onPress={signOut} loading={isLoading} />
     </Screen>
   );
 }
