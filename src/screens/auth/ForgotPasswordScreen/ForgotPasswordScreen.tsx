@@ -1,21 +1,29 @@
 import React from 'react';
 
+import {useAuthRequestNewPassword} from '@domain';
 import {zodResolver} from '@hookform/resolvers/zod';
+import {useToastService} from '@services';
 import {useForm} from 'react-hook-form';
 
 import {Button, FormTextInput, Screen, Text} from '@components';
 import {useResetNavigationSuccess} from '@hooks';
-import {AuthScreenProps} from '@routes';
+import {AuthScreenProps, AuthStackParamsList} from '@routes';
 
 import {
   forgotPasswordSchema,
   ForgotPasswordSchema,
 } from './forgotPasswordSchema.ts';
 
-export function ForgotPasswordScreen({
-  navigation,
-}: AuthScreenProps<'ForgotPasswordScreen'>) {
-  console.log(navigation);
+const resetParam: AuthStackParamsList['SuccessScreen'] = {
+  title: `We have sent the instructions to ${'\n'}your e-mail`,
+  description: 'Click on the link sent to your e-mail to reset your password',
+  icon: {
+    name: 'messageRound',
+    color: 'primary',
+  },
+};
+
+export function ForgotPasswordScreen({}: AuthScreenProps<'ForgotPasswordScreen'>) {
   const {reset} = useResetNavigationSuccess();
   const {control, formState, handleSubmit} = useForm<ForgotPasswordSchema>({
     resolver: zodResolver(forgotPasswordSchema),
@@ -24,17 +32,14 @@ export function ForgotPasswordScreen({
     },
     mode: 'onChange',
   });
+  const {requestNewPassword, isLoading} = useAuthRequestNewPassword({
+    onSuccess: () => reset(resetParam),
+    onError: message => showToast({message, type: 'error'}),
+  });
+  const {showToast} = useToastService();
 
-  function recoverPassword() {
-    reset({
-      title: `We have sent the instructions to ${'\n'}your e-mail`,
-      description:
-        'Click on the link sent to your e-mail to reset your password',
-      icon: {
-        name: 'messageRound',
-        color: 'primary',
-      },
-    });
+  function recoverPassword(values: ForgotPasswordSchema) {
+    requestNewPassword(values.email);
   }
 
   return (
@@ -56,6 +61,7 @@ export function ForgotPasswordScreen({
       <Button
         disabled={!formState.isValid}
         title="Recover Password"
+        loading={isLoading}
         onPress={handleSubmit(recoverPassword)}
       />
     </Screen>
