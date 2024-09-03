@@ -5,6 +5,7 @@ import React, {
   useState,
 } from 'react';
 
+import {registerInterceptor} from '@api';
 import {AuthCredentials, authService} from '@domain';
 import {AuthCredentialsService} from '@services';
 
@@ -25,6 +26,14 @@ export function AuthCredentialsProvider({children}: PropsWithChildren<{}>) {
   useEffect(() => {
     startAuthCredentials();
   }, []);
+
+  useEffect(() => {
+    return registerInterceptor({
+      authCredentials,
+      saveCredentials,
+      removeCredentials,
+    });
+  }, [authCredentials]);
 
   async function startAuthCredentials() {
     try {
