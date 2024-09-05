@@ -2,9 +2,15 @@ import {parseISO, differenceInSeconds, format} from 'date-fns';
 
 function formatRelative(dateISO: string) {
   const date = parseISO(dateISO);
-  const now = new Date();
+  // const now = new Date();
+  const now = Date.now(); //Changed here because I am testing this method in JEST
 
   const diffInSeconds = differenceInSeconds(now, date);
+
+  //Future date
+  if (diffInSeconds < 0) {
+    return format(date, 'dd/MM/yyyy');
+  }
 
   if (diffInSeconds < 60) {
     return `${diffInSeconds} s`;
@@ -32,7 +38,7 @@ function formatRelative(dateISO: string) {
 
   const diffInMonths = Math.floor(diffInDays / 30);
   if (diffInMonths < 12) {
-    return `${diffInMonths} m`;
+    return `${diffInMonths} mon`;
   }
 
   return format(date, 'dd/MM/yyyy');
