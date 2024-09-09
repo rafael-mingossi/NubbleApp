@@ -22,12 +22,17 @@ export function useAuthSignIn(options?: MutationOptions<AuthCredentials>) {
     },
     onSuccess: authCredentials => {
       // authService.updateToken(authCredentials.token);
-      saveCredentials(authCredentials).then(() => {});
+      if (options?.onSuccess) {
+        options.onSuccess(authCredentials);
+      }
+      saveCredentials(authCredentials);
     },
   });
 
   return {
     isLoading: mutation.isLoading,
     signIn: (variables: Variables) => mutation.mutate(variables),
+    isSuccess: mutation.isSuccess,
+    isError: mutation.isError,
   };
 }
