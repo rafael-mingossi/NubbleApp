@@ -1,5 +1,3 @@
-export * from './hooks/useUser';
-
 export * from './authAdapter.ts';
 export * from './authApi.ts';
 export * from './authService.ts';
