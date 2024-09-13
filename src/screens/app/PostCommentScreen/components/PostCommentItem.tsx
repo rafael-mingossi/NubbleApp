@@ -9,7 +9,7 @@ import {Box, ProfileAvatar, Text} from '@components';
 interface Props {
   postId: number;
   postComment: PostComment;
-  userId: number;
+  userId: number | null;
   postAuthorId: number;
 }
 
@@ -47,7 +47,10 @@ export function PostCommentItem({
   }
 
   return (
-    <Pressable onLongPress={confirmRemove} disabled={!isAllowedToDelete}>
+    <Pressable
+      testID="post-comment-id"
+      onLongPress={confirmRemove}
+      disabled={!isAllowedToDelete}>
       <Box flexDirection="row" columnGap="s12" alignItems="center" mb="s16">
         <ProfileAvatar imageURL={postComment.author.profileURL} />
         <Box flex={1}>
