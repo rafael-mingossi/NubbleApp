@@ -14,10 +14,17 @@ async function getListComments(
     page,
     per_page: PER_PAGE,
   });
-  return {
-    data: postCommentPageAPI.data.map(postCommentAdapter.toPostComment),
-    meta: apiAdapter.toMetaDataPage(postCommentPageAPI.meta),
-  };
+
+  return apiAdapter.toPageModel(
+    postCommentPageAPI,
+    postCommentAdapter.toPostComment,
+  );
+
+  //Before the toPageModel above was implemented
+  // return {
+  //   data: postCommentPageAPI.data.map(postCommentAdapter.toPostComment),
+  //   meta: apiAdapter.toMetaDataPage(postCommentPageAPI.meta),
+  // };
 }
 
 async function create(postId: number, message: string): Promise<PostComment> {

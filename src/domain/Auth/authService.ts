@@ -12,24 +12,18 @@ async function signIn(
     const authCredentialsAPI = await authApi.signIn(email, password);
     return authAdapter.toAuthCredentials(authCredentialsAPI);
   } catch (error) {
+    console.log('ERROR AUTH SERVICE DOMAIN =>', error);
     throw new Error('email or password invalid');
   }
 }
 
 async function signOut(): Promise<string> {
-  return await authApi.signOut();
+  const message = await authApi.signOut();
+  return message;
 }
 
 async function signUp(signUpData: SignUpData): Promise<void> {
   await authApi.signUp(signUpData);
-}
-
-function updateToken(token: string) {
-  api.defaults.headers.common.Authorization = `Bearer ${token}`;
-}
-
-function removeToken() {
-  api.defaults.headers.common.Authorization = null;
 }
 
 async function isUserNameAvailable(username: string): Promise<boolean> {
@@ -41,12 +35,20 @@ async function isEmailAvailable(email: string): Promise<boolean> {
   return isAvailable;
 }
 
+function updateToken(token: string) {
+  api.defaults.headers.common.Authorization = `Bearer ${token}`;
+}
+
+function removeToken() {
+  api.defaults.headers.common.Authorization = null;
+}
+
 async function requestNewPassword(email: string): Promise<string> {
   const {message} = await authApi.forgotPassword({email});
   return message;
 }
 
-async function authenticatedByRefreshToken(
+async function authenticateByRefreshToken(
   refreshToken: string,
 ): Promise<AuthCredentials> {
   const acAPI = await authApi.refreshToken(refreshToken);
@@ -56,11 +58,12 @@ async function authenticatedByRefreshToken(
 export const authService = {
   signIn,
   signOut,
-  signUp,
   updateToken,
   removeToken,
+  signUp,
   isUserNameAvailable,
   isEmailAvailable,
   requestNewPassword,
-  authenticatedByRefreshToken,
+  authenticateByRefreshToken,
+  isRefreshTokenRequest: authApi.isRefreshTokenRequest,
 };

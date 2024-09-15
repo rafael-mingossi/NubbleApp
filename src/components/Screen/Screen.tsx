@@ -8,6 +8,7 @@ import {ScrollViewContainer, ViewContainer, ScreenHeader} from './components';
 
 export interface ScreenProps extends BoxProps {
   children: ReactNode;
+  HeaderComponent?: ReactNode;
   canGoBack?: boolean;
   scrollable?: boolean;
   title?: string;
@@ -15,6 +16,7 @@ export interface ScreenProps extends BoxProps {
 
 export function Screen({
   children,
+  HeaderComponent,
   canGoBack = false,
   scrollable = false,
   style,
@@ -35,7 +37,11 @@ export function Screen({
           style={[{paddingTop: top, paddingBottom: bottom}, style]}
           paddingHorizontal="s24"
           {...boxProps}>
-          <ScreenHeader canGoBack={canGoBack} title={title} />
+          <ScreenHeader
+            HeaderComponent={HeaderComponent}
+            canGoBack={canGoBack}
+            title={title}
+          />
           {children}
         </Box>
       </Container>
