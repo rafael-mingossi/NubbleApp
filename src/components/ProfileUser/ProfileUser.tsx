@@ -9,15 +9,18 @@ import {
   ProfileAvatar,
   Text,
   PressableBoxProps,
+  ProfileAvatarProps,
 } from '@components';
 
 type ProfileUserProps = {
   user: Pick<User, 'username' | 'profileUrl' | 'id'>;
+  avatarProps?: Omit<Partial<ProfileAvatarProps>, 'imageURL'>;
 } & PressableBoxProps;
 
 export function ProfileUser({
   user,
   onPress,
+  avatarProps,
   ...pressableBoxProps
 }: ProfileUserProps) {
   const navigation = useNavigation();
@@ -36,7 +39,7 @@ export function ProfileUser({
       mb="s16"
       onPress={handleOnPress}
       {...pressableBoxProps}>
-      <ProfileAvatar imageURL={user.profileUrl} />
+      <ProfileAvatar {...avatarProps} imageURL={user.profileUrl} />
       <Text ml="s12" semiBold preset="paragraphMedium">
         {user.username}
       </Text>

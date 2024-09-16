@@ -1,8 +1,9 @@
-import {storage} from '@services';
 import {create} from 'zustand';
 import {persist} from 'zustand/middleware';
 
-import {SearchHistoryService} from './searchHistoryType.ts';
+import {storage} from '../storage';
+
+import type {SearchHistoryService} from './searchHistoryType.ts';
 
 const useSearchHistoryStore = create<SearchHistoryService>()(
   persist(

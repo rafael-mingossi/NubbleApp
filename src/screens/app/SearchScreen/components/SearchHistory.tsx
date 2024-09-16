@@ -9,13 +9,15 @@ import {Box, ProfileUser, Text} from '@components';
 export function SearchHistory() {
   const userList = useSearchHistory();
   function renderItem({item}: ListRenderItemInfo<User>) {
-    return <ProfileUser user={item} />;
+    return <ProfileUser user={item} avatarProps={{size: 48}} />;
   }
   return (
     <Box>
       <FlatList
         ListHeaderComponent={
-          <Text preset="headingMedium">Recent Searches</Text>
+          <Text mb="s16" preset="headingMedium">
+            Recent Searches
+          </Text>
         }
         data={userList}
         renderItem={renderItem}
