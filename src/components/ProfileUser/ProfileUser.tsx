@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import {GestureResponderEvent} from 'react-native';
 
 import {User} from '@domain';
@@ -10,16 +10,19 @@ import {
   Text,
   PressableBoxProps,
   ProfileAvatarProps,
+  Box,
 } from '@components';
 
 type ProfileUserProps = {
   user: Pick<User, 'username' | 'profileUrl' | 'id'>;
   avatarProps?: Omit<Partial<ProfileAvatarProps>, 'imageURL'>;
+  RightComponent?: ReactElement;
 } & PressableBoxProps;
 
 export function ProfileUser({
   user,
   onPress,
+  RightComponent,
   avatarProps,
   ...pressableBoxProps
 }: ProfileUserProps) {
@@ -36,13 +39,17 @@ export function ProfileUser({
     <PressableBox
       flexDirection="row"
       alignItems="center"
+      justifyContent="space-between"
       mb="s16"
       onPress={handleOnPress}
       {...pressableBoxProps}>
-      <ProfileAvatar {...avatarProps} imageURL={user.profileUrl} />
-      <Text ml="s12" semiBold preset="paragraphMedium">
-        {user.username}
-      </Text>
+      <Box flexDirection="row" alignItems="center">
+        <ProfileAvatar {...avatarProps} imageURL={user.profileUrl} />
+        <Text ml="s12" semiBold preset="paragraphMedium">
+          {user.username}
+        </Text>
+      </Box>
+      {RightComponent}
     </PressableBox>
   );
 }

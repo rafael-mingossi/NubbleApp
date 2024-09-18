@@ -22,10 +22,14 @@ export type AppStackParamsList = {
 
 const Stack = createNativeStackNavigator<AppStackParamsList>();
 
-export function AppStack() {
+interface Props {
+  initialRouteName?: keyof AppStackParamsList;
+}
+
+export function AppStack({initialRouteName = 'AppTabNavigator'}: Props) {
   return (
     <Stack.Navigator
-      initialRouteName="AppTabNavigator"
+      initialRouteName={initialRouteName}
       screenOptions={{headerShown: false, fullScreenGestureEnabled: true}}>
       <Stack.Screen name={'AppTabNavigator'} component={AppTabNavigator} />
       <Stack.Screen name="PostCommentScreen" component={PostCommentScreen} />

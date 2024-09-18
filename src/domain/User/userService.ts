@@ -1,6 +1,8 @@
 import {apiAdapter} from '@api';
-import {userApi, User, userAdapter} from '@domain';
+import {User, userAdapter} from '@domain';
 import {Page} from '@types';
+
+import {userApi} from './userApi.ts';
 
 async function getById(id: number): Promise<User> {
   const userAPI = await userApi?.getById(id.toString());

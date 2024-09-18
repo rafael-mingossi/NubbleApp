@@ -3,7 +3,7 @@ import {persist} from 'zustand/middleware';
 
 import {storage} from '../storage';
 
-import type {SearchHistoryService} from './searchHistoryType.ts';
+import {SearchHistoryService} from './searchHistoryType';
 
 const useSearchHistoryStore = create<SearchHistoryService>()(
   persist(
@@ -11,8 +11,13 @@ const useSearchHistoryStore = create<SearchHistoryService>()(
       userList: [],
       addUser: user => {
         const userList = get().userList;
-        const updatedList = [...userList, user];
-        set({userList: updatedList});
+
+        const userExist = userList.find(item => item.id === user.id);
+
+        if (!userExist) {
+          const updatedList = [...userList, user];
+          set({userList: updatedList});
+        }
       },
       removeUser: userId => {
         const userList = get().userList;

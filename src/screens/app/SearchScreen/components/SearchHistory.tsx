@@ -2,14 +2,27 @@ import React from 'react';
 import {FlatList, ListRenderItemInfo} from 'react-native';
 
 import {User} from '@domain';
-import {useSearchHistory} from '@services';
+import {useSearchHistory, useSearchHistoryService} from '@services';
 
-import {Box, ProfileUser, Text} from '@components';
+import {Box, Icon, ProfileUser, Text} from '@components';
 
 export function SearchHistory() {
   const userList = useSearchHistory();
+  const {removeUser} = useSearchHistoryService();
   function renderItem({item}: ListRenderItemInfo<User>) {
-    return <ProfileUser user={item} avatarProps={{size: 48}} />;
+    return (
+      <ProfileUser
+        user={item}
+        avatarProps={{size: 48}}
+        RightComponent={
+          <Icon
+            name="trash"
+            onPress={() => removeUser(item.id)}
+            color="primary"
+          />
+        }
+      />
+    );
   }
   return (
     <Box>
