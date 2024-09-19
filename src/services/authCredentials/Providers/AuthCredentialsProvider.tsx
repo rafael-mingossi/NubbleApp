@@ -29,11 +29,14 @@ export function AuthCredentialsProvider({children}: PropsWithChildren<{}>) {
   }, []);
 
   useEffect(() => {
-    return registerInterceptor({
+    const interceptor = registerInterceptor({
       authCredentials,
-      saveCredentials,
       removeCredentials,
+      saveCredentials,
     });
+
+    // remove listener when component unmount
+    return interceptor;
   }, [authCredentials]);
 
   async function startAuthCredentials() {

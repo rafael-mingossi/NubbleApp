@@ -4,12 +4,11 @@ import {AuthCredentialsService} from './authCredentialsTypes.ts';
 import {AuthCredentialsContext} from './Providers/AuthCredentialsProvider.tsx';
 
 export function useAuthCredentials(): AuthCredentialsService {
-  // return useAuthCredentialsZustand();
-
   const context = useContext(AuthCredentialsContext);
-
   if (!context) {
-    throw new Error('Auth is missing provider');
+    throw new Error(
+      'AuthCredentials should be used within a AuthCredentialsProvider',
+    );
   }
 
   return context;

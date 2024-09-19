@@ -1,9 +1,11 @@
 import React from 'react';
 import {Image} from 'react-native';
 
-interface ProfileAvatarProps {
+export interface ProfileAvatarProps {
   imageURL: string;
+  /** @default 32 */
   size?: number;
+  /** @default 14 */
   borderRadius?: number;
 }
 

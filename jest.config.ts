@@ -10,9 +10,9 @@ const config: Config = {
     'src/{components,utils,hooks,domain,screens}/**/*.{js,jsx,ts,tsx}',
   ],
   coveragePathIgnorePatterns: ['/node_modules/', 'index'],
-  testTimeout: 15000,
+  testTimeout: 15000, //added to fix error in gitHub workflow
   transformIgnorePatterns: [
-    'node_modules/(?!((jest-)?react-native|@react-native(-community)?|react-native-safe-area-context)/)',
+    'node_modules/(?!((jest-)?react-native|@react-native(-community)?|react-native-safe-area-context|@react-navigation)/)',
   ],
 };
 

@@ -6,8 +6,8 @@ import {UserAPI} from '../User';
 import {
   AuthCredentialsAPI,
   FieldIsAvailableAPI,
-  SignUpDataAPI,
   ForgotPasswordParam,
+  SignUpDataAPI,
 } from './authTypes';
 
 const REFRESH_TOKEN_URL = 'auth/refresh-token';
@@ -30,7 +30,6 @@ async function signOut(): Promise<string> {
 
 async function signUp(data: SignUpDataAPI): Promise<UserAPI> {
   const response = await api.post<UserAPI>('auth/register', data);
-
   return response.data;
 }
 
@@ -76,6 +75,10 @@ async function refreshToken(token: string): Promise<AuthCredentialsAPI> {
   return response.data;
 }
 
+/**
+ * @returns  Check the config URL property to returns if is a refresh token request
+ * @param request
+ */
 function isRefreshTokenRequest(request: AxiosRequestConfig): boolean {
   const url = request.url;
   return url === REFRESH_TOKEN_URL;
