@@ -1,4 +1,4 @@
-import {authApi, AuthCredentials, authService} from '@domain';
+import {AuthCredentials, authService} from '@domain';
 import axios from 'axios';
 
 export const BASE_URL = 'http://127.0.0.1:3333/';
@@ -14,8 +14,8 @@ type InterceptorProps = {
 
 export function registerInterceptor({
   authCredentials,
-  saveCredentials,
   removeCredentials,
+  saveCredentials,
 }: InterceptorProps) {
   const interceptor = api.interceptors.response.use(
     response => response,
@@ -23,8 +23,7 @@ export function registerInterceptor({
       const failedRequest = responseError.config;
       const hasNotRefreshToken = !authCredentials?.refreshToken;
       const isRefreshTokenRequest =
-        authApi.isRefreshTokenRequest(failedRequest);
-
+        authService.isRefreshTokenRequest(failedRequest);
       if (responseError.response.status === 401) {
         if (hasNotRefreshToken || isRefreshTokenRequest || failedRequest.sent) {
           await removeCredentials();
@@ -33,11 +32,9 @@ export function registerInterceptor({
 
         failedRequest.sent = true;
 
-        const newAuthCredentials =
-          await authService.authenticatedByRefreshToken(
-            authCredentials.refreshToken,
-          );
-
+        const newAuthCredentials = await authService.authenticateByRefreshToken(
+          authCredentials?.refreshToken,
+        );
         await saveCredentials(newAuthCredentials);
 
         failedRequest.headers.Authorization = `Bearer ${newAuthCredentials.token}`;
@@ -45,7 +42,7 @@ export function registerInterceptor({
         return api(failedRequest);
       }
 
-      await Promise.reject(responseError);
+      return Promise.reject(responseError);
     },
   );
 

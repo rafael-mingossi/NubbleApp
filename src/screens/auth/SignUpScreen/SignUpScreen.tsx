@@ -35,8 +35,7 @@ let defaultValues = {
   password: '',
 };
 
-export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
-  console.log(navigation);
+export function SignUpScreen({}: AuthScreenProps<'SignUpScreen'>) {
   const {reset} = useResetNavigationSuccess();
   const {signUp, isLoading} = useAuthSignUp({
     onSuccess: () => {
