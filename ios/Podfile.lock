@@ -947,6 +947,10 @@ PODS:
   - React-Mapbuffer (0.73.8):
     - glog
     - React-debug
+  - react-native-cameraroll (7.8.3):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
+    - React-Core
   - react-native-mmkv (2.12.2):
     - glog
     - MMKV (>= 1.3.3)
@@ -1186,6 +1190,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector-modern`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
+  - "react-native-cameraroll (from `../node_modules/@react-native-camera-roll/camera-roll`)"
   - react-native-mmkv (from `../node_modules/react-native-mmkv`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
@@ -1287,6 +1292,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   React-Mapbuffer:
     :path: "../node_modules/react-native/ReactCommon"
+  react-native-cameraroll:
+    :path: "../node_modules/@react-native-camera-roll/camera-roll"
   react-native-mmkv:
     :path: "../node_modules/react-native-mmkv"
   react-native-safe-area-context:
@@ -1382,6 +1389,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 1729acf5ffe2d4439d698da25fddf0c75d07d1a1
   React-logger: 60afd40b183e8e6642bfd0108f1a1ad360cc665e
   React-Mapbuffer: 672a9342eb75a4d0663306e94d4dfc88aee73b93
+  react-native-cameraroll: 0fe31282894817a82b5991dd0d78dc04c5a6ed35
   react-native-mmkv: 1fdc81aa70c1aba09370718e6a63a09cbbbac8d2
   react-native-safe-area-context: b7daa1a8df36095a032dff095a1ea8963cb48371
   React-nativeconfig: 2e44d0d2dd222b12a5183f4bcaa4a91881497acb
