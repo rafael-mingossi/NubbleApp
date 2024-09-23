@@ -1,12 +1,14 @@
 import {useEffect, useState} from 'react';
-// import {PermissionsAndroid, Platform} from 'react-native';
 
 import {QueryKeys} from '@infra';
 import {useInfiniteQuery} from '@tanstack/react-query';
 
 import {cameraRollService} from './cameraRollService.ts';
 
-export function useCameraRoll(hasPermission: boolean) {
+export function useCameraRoll(
+  hasPermission: boolean,
+  onInitialLoad?: (imageUri: string) => void,
+) {
   const [list, setList] = useState<string[]>([]);
 
   const query = useInfiniteQuery({
@@ -22,8 +24,12 @@ export function useCameraRoll(hasPermission: boolean) {
         return [...prev, ...curr.photoList];
       }, []);
       setList(newList);
+
+      if (query.data.pages.length === 1 && onInitialLoad) {
+        onInitialLoad(newList[0]);
+      }
     }
-  }, [query.data]);
+  }, [onInitialLoad, query.data]);
 
   return {
     photoList: list,
@@ -31,56 +37,3 @@ export function useCameraRoll(hasPermission: boolean) {
     fetchNextPage: () => query.fetchNextPage(), //Returning as an anonymous function to avoid TS error in NewPostScreen
   };
 }
-
-// async function hasAndroidPermission() {
-//   if (Platform.OS === 'ios') {
-//     return true;
-//   }
-//
-//   const getCheckPermissionPromise = () => {
-//     // @ts-ignore
-//     if (Platform.Version >= 33) {
-//       return Promise.all([
-//         PermissionsAndroid.check(
-//           PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES,
-//         ),
-//         PermissionsAndroid.check(
-//           PermissionsAndroid.PERMISSIONS.READ_MEDIA_VIDEO,
-//         ),
-//       ]).then(
-//         ([hasReadMediaImagesPermission, hasReadMediaVideoPermission]) =>
-//           hasReadMediaImagesPermission && hasReadMediaVideoPermission,
-//       );
-//     } else {
-//       return PermissionsAndroid.check(
-//         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-//       );
-//     }
-//   };
-//
-//   const hasPermission = await getCheckPermissionPromise();
-//   if (hasPermission) {
-//     return true;
-//   }
-//   const getRequestPermissionPromise = () => {
-//     // @ts-ignore
-//     if (Platform.Version >= 33) {
-//       return PermissionsAndroid.requestMultiple([
-//         PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES,
-//         PermissionsAndroid.PERMISSIONS.READ_MEDIA_VIDEO,
-//       ]).then(
-//         statuses =>
-//           statuses[PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES] ===
-//             PermissionsAndroid.RESULTS.GRANTED &&
-//           statuses[PermissionsAndroid.PERMISSIONS.READ_MEDIA_VIDEO] ===
-//             PermissionsAndroid.RESULTS.GRANTED,
-//       );
-//     } else {
-//       return PermissionsAndroid.request(
-//         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-//       ).then(status => status === PermissionsAndroid.RESULTS.GRANTED);
-//     }
-//   };
-//
-//   return await getRequestPermissionPromise();
-// }

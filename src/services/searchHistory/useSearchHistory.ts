@@ -11,7 +11,6 @@ const useSearchHistoryStore = create<SearchHistoryService>()(
       userList: [],
       addUser: user => {
         const userList = get().userList;
-
         const userExist = userList.find(item => item.id === user.id);
 
         if (!userExist) {
