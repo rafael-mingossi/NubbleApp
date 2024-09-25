@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 
-import {permissionService} from './permissionService.ts';
-import {PermissionName, PermissionStatus} from './permissionTypes.ts';
+import {permissionService} from './permissionService';
+import {PermissionName, PermissionStatus} from './permissionTypes';
 
 export function usePermission(permissionName: PermissionName) {
   const [status, setStatus] = useState<PermissionStatus>();
