@@ -5,6 +5,7 @@ export * from './auth/SignUpScreen/SignUpScreen';
 export * from './auth/SuccessScreen/SuccessScreen';
 
 ///APP
+export * from './app/CameraScreen/CameraScreen';
 export * from './app/FavouritesScreen/FavouritesScreen';
 export * from './app/HomeScreen/HomeScreen';
 export * from './app/MyProfileScreen/MyProfileScreen';

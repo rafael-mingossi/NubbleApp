@@ -9,7 +9,7 @@ import {
 
 import {useCameraRoll, usePermission} from '@services';
 
-import {Screen} from '@components';
+import {PermissionManager, Screen} from '@components';
 
 import {Header} from './components/Header.tsx';
 
@@ -45,18 +45,22 @@ export function NewPostScreen() {
   }
 
   return (
-    <Screen canGoBack title="New Post" noPaddingHorizontal>
-      <FlatList
-        ref={flatListRef}
-        data={photoList}
-        renderItem={renderItem}
-        numColumns={NUM_COLUMNS}
-        onEndReached={fetchNextPage}
-        onEndReachedThreshold={0.1}
-        ListHeaderComponent={
-          <Header imageWidth={SCREEN_WIDTH} imageUri={selectedImage} />
-        }
-      />
-    </Screen>
+    <PermissionManager
+      permissionName="photoLibrary"
+      description="Allow Nubble to access the images from your gallery">
+      <Screen canGoBack title="New Post" noPaddingHorizontal>
+        <FlatList
+          ref={flatListRef}
+          data={photoList}
+          renderItem={renderItem}
+          numColumns={NUM_COLUMNS}
+          onEndReached={fetchNextPage}
+          onEndReachedThreshold={0.1}
+          ListHeaderComponent={
+            <Header imageWidth={SCREEN_WIDTH} imageUri={selectedImage} />
+          }
+        />
+      </Screen>
+    </PermissionManager>
   );
 }

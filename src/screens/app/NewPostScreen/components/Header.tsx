@@ -1,6 +1,7 @@
 import React from 'react';
 import {ImageBackground, StyleSheet} from 'react-native';
 
+import {images} from '@assets';
 import {useNavigation} from '@react-navigation/native';
 
 import {Box, BoxProps, Button, Icon, Text} from '@components';
@@ -18,10 +19,14 @@ export function Header({imageWidth, imageUri}: Props) {
       navigation.navigate('PublishPostScreen', {imageUri});
     }
   }
+
+  function navigateToCameraScreen() {
+    navigation.navigate('CameraScreen');
+  }
   return (
     <Box>
       <ImageBackground
-        source={{uri: imageUri}}
+        source={imageUri ? {uri: imageUri} : images.imagePlaceholder}
         style={[
           {
             width: imageWidth,
@@ -39,7 +44,7 @@ export function Header({imageWidth, imageUri}: Props) {
       </ImageBackground>
       <Box {...$optionsStyles}>
         <Text preset="headingSmall">Your gallery</Text>
-        <Icon name="camera" />
+        <Icon name="camera" onPress={navigateToCameraScreen} />
       </Box>
     </Box>
   );

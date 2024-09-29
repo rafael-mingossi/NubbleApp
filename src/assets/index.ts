@@ -29,3 +29,7 @@ export * from './icons/SettingsIcon.tsx';
 export * from './icons/TrashIcon.tsx';
 export * from './icons/SearchIcon.tsx';
 export * from './icons/MessageRoundIcon.tsx';
+
+export const images = {
+  imagePlaceholder: require('./images/image_placeholder.png'),
+};
