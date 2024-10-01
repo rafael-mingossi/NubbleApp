@@ -3,7 +3,7 @@ import {PostAPI} from '@domain';
 import {ImageForUpload} from '@services';
 
 async function getList(params?: PageParams): Promise<PageAPI<PostAPI>> {
-  await new Promise(resolve => setTimeout(() => resolve(''), 1500));
+  await new Promise(resolve => setTimeout(() => resolve(''), 1500)); //TODO: MAYBE DELETE
   const response = await api.get<PageAPI<PostAPI>>('user/post', {
     params: params,
   });
