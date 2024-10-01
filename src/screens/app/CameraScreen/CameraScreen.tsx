@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
 
 import {useIsFocused} from '@react-navigation/native';
@@ -20,6 +20,7 @@ const CONTROL_DIF = 30;
 export function CameraScreen({navigation}: AppScreenProps<'CameraScreen'>) {
   const {top} = useAppSafeArea();
   const [flashOn, setFlashOn] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   const device = useCameraDevice('back', {
     physicalDevices: [
       'ultra-wide-angle-camera',
@@ -28,11 +29,26 @@ export function CameraScreen({navigation}: AppScreenProps<'CameraScreen'>) {
     ],
   });
 
+  const camera = useRef<Camera>(null);
+
   const format = useCameraFormat(device, Templates.Instagram);
 
   const isFocused = useIsFocused();
   const appState = useAppState();
   const isActive = isFocused && appState === 'active';
+
+  async function takePhoto() {
+    if (camera.current) {
+      const photoFile = await camera.current?.takePhoto({
+        flash: flashOn ? 'on' : 'off',
+        qualityPrioritization: 'quality',
+      });
+
+      navigation.navigate('PublishPostScreen', {
+        imageUri: `file://${photoFile?.path}`,
+      });
+    }
+  }
 
   function toggleFlash() {
     setFlashOn(prevState => !prevState);
@@ -45,10 +61,14 @@ export function CameraScreen({navigation}: AppScreenProps<'CameraScreen'>) {
       <Box flex={1}>
         {device != null && (
           <Camera
+            ref={camera}
             format={format}
             style={StyleSheet.absoluteFill}
             device={device}
             isActive={isActive}
+            photo={true}
+            onInitialized={() => setIsReady(true)}
+            enableHighQualityPhotos={true} //In case the photos have quality set, we need to enable this option for IOS
           />
         )}
         <Box flex={1} justifyContent="space-between">
@@ -66,7 +86,14 @@ export function CameraScreen({navigation}: AppScreenProps<'CameraScreen'>) {
             <Box width={20} />
           </Box>
           <Box {...$controlAreaBottom}>
-            <Icon name="cameraClick" color="grayWhite" />
+            {isReady && (
+              <Icon
+                size={80}
+                name="cameraClick"
+                color="grayWhite"
+                onPress={takePhoto}
+              />
+            )}
           </Box>
         </Box>
       </Box>
