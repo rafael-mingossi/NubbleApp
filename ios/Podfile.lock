@@ -947,6 +947,10 @@ PODS:
   - React-Mapbuffer (0.73.8):
     - glog
     - React-debug
+  - react-native-cameraroll (7.8.3):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
+    - React-Core
   - react-native-mmkv (2.12.2):
     - glog
     - MMKV (>= 1.3.3)
@@ -1123,6 +1127,8 @@ PODS:
     - React-perflogger (= 0.73.8)
   - RNCAsyncStorage (2.0.0):
     - React-Core
+  - RNPermissions (4.1.5):
+    - React-Core
   - RNScreens (3.34.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
@@ -1131,6 +1137,10 @@ PODS:
   - RNSVG (15.5.0):
     - React-Core
   - SocketRocket (0.6.1)
+  - VisionCamera (3.9.2):
+    - React
+    - React-callinvoker
+    - React-Core
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -1186,6 +1196,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector-modern`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
+  - "react-native-cameraroll (from `../node_modules/@react-native-camera-roll/camera-roll`)"
   - react-native-mmkv (from `../node_modules/react-native-mmkv`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
@@ -1209,8 +1220,10 @@ DEPENDENCIES:
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - VisionCamera (from `../node_modules/react-native-vision-camera`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -1287,6 +1300,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   React-Mapbuffer:
     :path: "../node_modules/react-native/ReactCommon"
+  react-native-cameraroll:
+    :path: "../node_modules/@react-native-camera-roll/camera-roll"
   react-native-mmkv:
     :path: "../node_modules/react-native-mmkv"
   react-native-safe-area-context:
@@ -1333,10 +1348,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  VisionCamera:
+    :path: "../node_modules/react-native-vision-camera"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -1382,6 +1401,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 1729acf5ffe2d4439d698da25fddf0c75d07d1a1
   React-logger: 60afd40b183e8e6642bfd0108f1a1ad360cc665e
   React-Mapbuffer: 672a9342eb75a4d0663306e94d4dfc88aee73b93
+  react-native-cameraroll: 0fe31282894817a82b5991dd0d78dc04c5a6ed35
   react-native-mmkv: 1fdc81aa70c1aba09370718e6a63a09cbbbac8d2
   react-native-safe-area-context: b7daa1a8df36095a032dff095a1ea8963cb48371
   React-nativeconfig: 2e44d0d2dd222b12a5183f4bcaa4a91881497acb
@@ -1405,11 +1425,13 @@ SPEC CHECKSUMS:
   React-utils: 4cc2ba652f5df1c8f0461d4ae9e3ee474c1354ea
   ReactCommon: 1da3fc14d904883c46327b3322325eebf60a720a
   RNCAsyncStorage: d35c79ffba52c1013013e16b1fc295aec2feabb6
+  RNPermissions: 4da8c626e4ac9d71c1a199d500d52dd54da62e38
   RNScreens: 29418ceffb585b8f0ebd363de304288c3dce8323
   RNSVG: b986585e367f4a49d8aa43065066cc9c290b3d9b
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
+  VisionCamera: 36c460338692788a0d377dce7d32f8ba049fb4f2
   Yoga: 2a16e58450c48e110211dae1159fb114bbcdcfc0
 
-PODFILE CHECKSUM: b4fd50c6e4bfde69b54f383e3df9da15853d1360
+PODFILE CHECKSUM: dddfb90ffe0aeec4e4256bfa943a4e6c5452537c
 
 COCOAPODS: 1.15.2

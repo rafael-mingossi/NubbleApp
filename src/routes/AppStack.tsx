@@ -8,6 +8,8 @@ import {
   PostCommentScreen,
   ProfileScreen,
   SearchScreen,
+  PublishPostScreen,
+  CameraScreen,
 } from '@screens';
 
 import {AppTabBottomTabParamList, AppTabNavigator} from './AppTabNavigator.tsx';
@@ -16,8 +18,10 @@ export type AppStackParamsList = {
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
   PostCommentScreen: {postId: number; postAuthorId: number};
   ProfileScreen: {userId: number};
+  PublishPostScreen: {imageUri: string};
   SearchScreen: undefined;
   SettingsScreen: undefined;
+  CameraScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<AppStackParamsList>();
@@ -31,11 +35,13 @@ export function AppStack({initialRouteName = 'AppTabNavigator'}: Props) {
     <Stack.Navigator
       initialRouteName={initialRouteName}
       screenOptions={{headerShown: false, fullScreenGestureEnabled: true}}>
-      <Stack.Screen name={'AppTabNavigator'} component={AppTabNavigator} />
+      <Stack.Screen name="AppTabNavigator" component={AppTabNavigator} />
       <Stack.Screen name="PostCommentScreen" component={PostCommentScreen} />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
-      <Stack.Screen name={'SearchScreen'} component={SearchScreen} />
-      <Stack.Screen name={'SettingsScreen'} component={SettingsScreen} />
+      <Stack.Screen name="PublishPostScreen" component={PublishPostScreen} />
+      <Stack.Screen name="SearchScreen" component={SearchScreen} />
+      <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+      <Stack.Screen name="CameraScreen" component={CameraScreen} />
     </Stack.Navigator>
   );
 }
