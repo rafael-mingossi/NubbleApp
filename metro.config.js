@@ -1,5 +1,6 @@
-import {getDefaultConfig} from 'expo/metro-config';
-import {mergeConfig} from '@react-native/metro-config';
+// const {getDefaultConfig} = require('expo/metro-config');
+// const {mergeConfig} = require('@react-native/metro-config');
+const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
 
 /**
  * Metro configuration
@@ -9,4 +10,5 @@ import {mergeConfig} from '@react-native/metro-config';
  */
 const config = {};
 
-export default mergeConfig(getDefaultConfig(__dirname), config);
+// export default mergeConfig(getDefaultConfig(__dirname), config);
+module.exports = mergeConfig(getDefaultConfig(__dirname), config);
