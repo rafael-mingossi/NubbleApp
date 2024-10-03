@@ -4,17 +4,22 @@ import {FlatList, ListRenderItemInfo} from 'react-native';
 import {useAuthSignOut} from '@domain';
 
 import {Button, Screen, Separator} from '@components';
+import {AppScreenProps} from '@routes';
 
 import {MenuItem, MenuItemProps} from './components/MenuItem.tsx';
-// import {AppScreenProps} from '@routes';
 
-export function SettingsScreen() {
+export function SettingsScreen({navigation}: AppScreenProps<'SettingsScreen'>) {
   const {signOut, isLoading} = useAuthSignOut();
 
   const items: MenuItemProps[] = [
     {label: 'Terms and conditions', onPress: () => {}},
     {label: 'Privacy policy', onPress: () => {}},
-    {label: 'Dark mode', onPress: () => {}},
+    {
+      label: 'Dark mode',
+      onPress: () => {
+        navigation.navigate('DarkModeScreen');
+      },
+    },
   ];
 
   function renderItem({item}: ListRenderItemInfo<MenuItemProps>) {
