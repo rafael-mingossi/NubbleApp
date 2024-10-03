@@ -16,7 +16,7 @@ export function RadioButton({isSelected, onPress}: RadioButtonProps) {
       width={20}
       borderRadius="s12"
       borderWidth={isSelected ? 2 : 1}
-      borderColor={isSelected ? 'primary' : 'gray1'}
+      borderColor={isSelected ? 'primary' : 'onBackgroundGray2'}
       justifyContent="center"
       alignItems="center">
       <Box
