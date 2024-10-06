@@ -3,6 +3,9 @@ import {Appearance} from 'react-native';
 
 import {useSettingsService} from '@services';
 
+/**
+ * To listen to device color scheme changes (dark mode and light mode)
+ */
 export function useAppColorScheme() {
   const {onSystemChange} = useSettingsService();
 

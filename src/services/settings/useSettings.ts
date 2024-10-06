@@ -1,6 +1,7 @@
-import {storage} from '@services';
 import {create} from 'zustand';
 import {persist} from 'zustand/middleware';
+
+import {storage} from '../storage';
 
 import {settingsService} from './settingsService.ts';
 import {
