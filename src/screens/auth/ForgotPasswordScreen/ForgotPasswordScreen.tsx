@@ -19,7 +19,8 @@ const resetParam: AuthStackParamsList['SuccessScreen'] = {
   description: 'Click on the link sent to your e-mail to reset your password',
   icon: {
     name: 'messageRound',
-    color: 'primary',
+    color: 'iconColor',
+    fillColor: 'iconFillColor',
   },
 };
 

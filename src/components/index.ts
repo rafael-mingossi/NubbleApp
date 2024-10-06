@@ -7,6 +7,8 @@ export * from './PermissionsManager/PermissionsManager';
 export * from './PostItem/PostItem';
 export * from './ProfileAvatar/ProfileAvatar';
 export * from './ProfileUser/ProfileUser';
+export * from './RadioButton';
+export * from './Separator/Separator';
 export * from './Screen/Screen';
 export * from './Text/Text';
 export * from './TextInput/TextInput';

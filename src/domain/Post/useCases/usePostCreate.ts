@@ -26,16 +26,17 @@ export function usePostCreate(options?: MutationOptions<Post>) {
     },
   });
 
-  function createPost({
+  async function createPost({
     description,
     imageUri,
   }: {
     description: string;
     imageUri: string;
   }) {
-    const imageForUpload = multimediaService.prepareImageForUpload(imageUri);
+    console.log('imageUri createPost =>>', imageUri);
+    const imageCover = await multimediaService.prepareImageForUpload(imageUri);
 
-    mutate({text: description, imageCover: imageForUpload});
+    mutate({text: description, imageCover});
   }
 
   return {
