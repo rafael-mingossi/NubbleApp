@@ -1,3 +1,6 @@
+export {
+  useAppColor,
+  useThemePreference,
+  useSettingsService,
+} from './useSettings.ts';
 export * from './settingsType.ts';
-export * from './useSettings.ts';
-export * from './settingsService.ts';
