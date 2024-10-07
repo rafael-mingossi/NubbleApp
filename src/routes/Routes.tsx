@@ -7,6 +7,7 @@ import {ActivityIndicator, Box} from '@components';
 
 import {AppStack} from './AppStack.tsx';
 import {AuthStack} from './AuthStack.tsx';
+// import {OnboardingStack} from './OnboardingStack.tsx';
 
 export function Router() {
   const {authCredentials, isLoading} = useAuthCredentials();
@@ -26,6 +27,7 @@ export function Router() {
   return (
     <NavigationContainer>
       {authCredentials ? <AppStack /> : <AuthStack />}
+      {/*<OnboardingStack />*/}
     </NavigationContainer>
   );
 }
