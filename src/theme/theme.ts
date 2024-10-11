@@ -5,7 +5,7 @@ import {createTheme} from '@shopify/restyle';
 import {colours} from './colours.ts';
 
 export const theme = createTheme({
-  colors: colours.darkTheme,
+  colors: colours.lightTheme,
   spacing: {
     s4: 4,
     s8: 8,
@@ -32,7 +32,7 @@ export const theme = createTheme({
 
 export const darkTheme = {
   ...theme,
-  colours: colours.darkTheme,
+  colors: colours.darkTheme,
 };
 
 export const $shadowProps: ViewStyle = {

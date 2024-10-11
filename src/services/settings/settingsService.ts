@@ -2,12 +2,13 @@ import {Appearance, ColorSchemeName, Platform, StatusBar} from 'react-native';
 
 import {colours} from '@theme';
 
-import {AppColorScheme, ThemePreference} from './settingsType.ts';
+import {AppColorScheme, ThemePreference} from './settingsType';
 
-function onChangeThemePreference(themePreference: ThemePreference) {
+function onChangeThemePreference(
+  themePreference: ThemePreference,
+): AppColorScheme {
   if (themePreference === 'system') {
     const colorScheme = Appearance.getColorScheme();
-    //return light as a fallback in case system does not return a theme
     return colorScheme ? colorScheme : 'light';
   }
 
@@ -21,7 +22,6 @@ function onSystemChange(
   if (themePreference === 'system') {
     return color ? color : 'light';
   }
-
   return null;
 }
 

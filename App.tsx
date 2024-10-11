@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-import {settingsService, useAppColor} from '@services';
+import {useAppColor} from '@services';
 import {ThemeProvider} from '@shopify/restyle';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -11,6 +11,7 @@ import {useAppColorScheme} from '@hooks';
 //Changed imports here because of life cycle issues importing from @...
 import {Router} from './src/routes/Routes';
 import {AuthCredentialsProvider} from './src/services/authCredentials/Providers/AuthCredentialsProvider';
+import {settingsService} from './src/services/settings/settingsService.ts';
 import {initialiseStorage, MMKVStorage} from './src/services/storage';
 import {darkTheme, theme} from './src/theme/theme';
 
@@ -19,8 +20,8 @@ initialiseStorage(MMKVStorage);
 const queryClient = new QueryClient();
 
 function App(): React.JSX.Element {
-  const appColor = useAppColor();
   useAppColorScheme();
+  const appColor = useAppColor();
 
   useEffect(() => {
     settingsService.handleStatusBar(appColor);
