@@ -1,15 +1,39 @@
 import React from 'react';
 
-import {Box, Icon, Text} from '@components';
+import {Box, Icon, PressableBox, Text} from '@components';
 
-export function BottomMenu() {
+import {OnboardingPageProps} from './OnboardingPage.tsx';
+
+type BottomMenuProps = Pick<
+  OnboardingPageProps,
+  'onPressNext' | 'onPressSkip'
+> & {
+  isLast: boolean;
+};
+
+export function BottomMenu({
+  onPressSkip,
+  onPressNext,
+  isLast,
+}: BottomMenuProps) {
+  const nextText = isLast ? "Let's go" : 'Next';
   return (
     <Box flexDirection="row" justifyContent="space-between">
-      <Text>Skip</Text>
-      <Box flexDirection="row" alignItems="center">
-        <Text mr="s10">Next</Text>
-        <Icon name="arrowRight" />
-      </Box>
+      <PressableBox hitSlop={10} onPress={onPressSkip}>
+        <Text semiBold color="gray2">
+          Skip
+        </Text>
+      </PressableBox>
+      <PressableBox
+        hitSlop={10}
+        flexDirection="row"
+        alignItems="center"
+        onPress={onPressNext}>
+        <Text bold mr="s10">
+          {nextText}
+        </Text>
+        <Icon name="arrowRight" color="carrotSecondary" />
+      </PressableBox>
     </Box>
   );
 }
