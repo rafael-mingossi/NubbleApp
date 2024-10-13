@@ -88,7 +88,7 @@ export const $textInputStyle = {
   flexGrow: 1,
   flexShrink: 1,
   padding: 0,
-  colors: colours.palette.grayBlack,
+  color: colours.palette.grayBlack,
   fontFamily: $fontFamily.regular,
   ...$fontSizes.paragraphMedium,
 };
