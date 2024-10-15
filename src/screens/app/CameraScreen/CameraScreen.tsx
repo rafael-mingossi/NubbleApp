@@ -42,7 +42,7 @@ export function CameraScreen({navigation}: AppScreenProps<'CameraScreen'>) {
     if (camera.current) {
       const photoFile = await camera.current?.takePhoto({
         flash: flashOn ? 'on' : 'off',
-        qualityPrioritization: 'quality',
+        // qualityPrioritization: 'quality',
       });
 
       navigation.navigate('PublishPostScreen', {
@@ -69,7 +69,7 @@ export function CameraScreen({navigation}: AppScreenProps<'CameraScreen'>) {
             isActive={isActive}
             photo={true}
             onInitialized={() => setIsReady(true)}
-            enableHighQualityPhotos={true} //In case the photos have quality set, we need to enable this option for IOS
+            // enableHighQualityPhotos={true} //In case the photos have quality set, we need to enable this option for IOS
           />
         )}
         <Box flex={1} justifyContent="space-between">
