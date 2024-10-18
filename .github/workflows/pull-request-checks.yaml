@@ -15,7 +15,13 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '18'
+
+      - name: Check Yarn files
+        run: ls -la .yarn/releases || echo ".yarn/releases directory does not exist"
+
+      - name: Setup Yarn
+        run: corepack enable yarn --version
 
       - name: Install Packages
         run: yarn install
