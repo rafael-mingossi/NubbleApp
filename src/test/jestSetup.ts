@@ -1,4 +1,3 @@
-//@ts-ignore
 import mockSafeAreaContext from 'react-native-safe-area-context/jest/mock';
 
 import {initialiseStorage} from '../services/storage';
@@ -37,5 +36,23 @@ jest.mock('../services/permission/permissionService', () => ({
     check: jest.fn(),
   },
 }));
+
+jest.mock('expo-image-manipulator', () => {
+  return {
+    manipulateAsync: jest.fn(),
+  };
+});
+
+jest.mock('react-native-bootsplash', () => {
+  return {
+    hide: jest.fn().mockImplementation(() => Promise.resolve()),
+    isVisible: jest.fn().mockResolvedValue(false),
+    useHideAnimation: jest.fn().mockReturnValue({
+      container: {},
+      logo: {source: 0},
+      brand: {source: 0},
+    }),
+  };
+});
 
 initialiseStorage(inMemoryStorage);

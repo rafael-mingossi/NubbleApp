@@ -17,6 +17,9 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Check Yarn files
+        run: ls -la .yarn/releases || echo ".yarn/releases directory does not exist"
+
       - name: Install Packages
         run: yarn install
 

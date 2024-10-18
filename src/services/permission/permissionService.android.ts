@@ -29,10 +29,15 @@ async function request(name: PermissionName): Promise<PermissionStatus> {
 }
 
 function mapNamePermission(name: PermissionName): Permission | null {
+  /**
+   * Version is always a number in Android
+   * https://reactnative.dev/docs/platform#version
+   */
+  const platform = Platform.Version as number;
+
   switch (name) {
     case 'photoLibrary':
-      // @ts-ignore
-      if (Platform.Version >= 33) {
+      if (platform >= 33) {
         return 'android.permission.READ_MEDIA_IMAGES';
       } else {
         return 'android.permission.READ_EXTERNAL_STORAGE';

@@ -18,8 +18,8 @@ const NUM_COLUMNS = 4;
 const ITEM_WIDTH = SCREEN_WIDTH / NUM_COLUMNS;
 
 export function NewPostScreen() {
-  const permission = usePermission('photoLibrary');
   const [selectedImage, setSelectedImage] = useState<string>();
+  const permission = usePermission('photoLibrary');
   const {photoList, fetchNextPage} = useMultimediaGetPhotos(
     permission.status === 'granted',
     setSelectedImage,
