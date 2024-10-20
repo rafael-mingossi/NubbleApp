@@ -21,7 +21,9 @@ export function PostCommentScreen({
   const postAuthorId = route.params.postAuthorId;
   const {list, fetchNextPage, hasNextPage} = usePostCommentList(postId);
 
-  const {post} = usePostGetById(postId);
+  const showPost = route.params.showPost || false;
+
+  const {post} = usePostGetById(postId, showPost);
 
   const {userId} = useAuthCredentials();
 
@@ -39,13 +41,19 @@ export function PostCommentScreen({
   }
 
   return (
-    <Screen flex={1} title="Comments" canGoBack>
+    <Screen
+      noPaddingHorizontal
+      flex={1}
+      title={showPost ? 'Post' : 'Comments'}
+      canGoBack>
       <Box flex={1} justifyContent="space-between">
         <FlatList
           showsVerticalScrollIndicator={false}
           data={list}
           renderItem={renderItem}
-          ListHeaderComponent={post && <PostItem post={post} />}
+          ListHeaderComponent={
+            post && <PostItem hideCommentAction post={post} />
+          }
           contentContainerStyle={{paddingBottom: bottom}}
           ListFooterComponent={
             <PostCommentBottom
