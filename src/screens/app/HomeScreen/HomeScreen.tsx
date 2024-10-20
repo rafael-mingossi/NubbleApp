@@ -1,29 +1,24 @@
 import React, {useRef} from 'react';
-import {
-  FlatList,
-  ListRenderItemInfo,
-  RefreshControl,
-  ViewStyle,
-} from 'react-native';
+import {FlatList, ListRenderItemInfo, ViewStyle} from 'react-native';
 
-import {Post, usePostList} from '@domain';
+import {Post, postService} from '@domain';
+import {QueryKeys} from '@infra';
 import {useScrollToTop} from '@react-navigation/native';
 
-import {PostItem, Screen} from '@components';
+import {InfinityScrollList, PostItem, Screen} from '@components';
+import {AppTabScreenProps} from '@routes';
 
-import {HomeEmpty} from './components/HomeEmpty.tsx';
 import {HomeHeader} from './components/HomeHeader.tsx';
-// import {AppTabScreenProps} from '@routes';
 
-// {navigation}: AppTabScreenProps<'HomeScreen'>
-export function HomeScreen() {
-  const {
-    isLoading,
-    refresh,
-    isError,
-    list: postList,
-    fetchNextPage,
-  } = usePostList();
+export function HomeScreen({}: AppTabScreenProps<'HomeScreen'>) {
+  // BEFORE INFINITY SCROLL
+  // const {
+  //   isLoading,
+  //   refresh,
+  //   isError,
+  //   list: postList,
+  //   fetchNextPage,
+  // } = usePostList();
   const flatListRef = useRef<FlatList<Post>>(null);
   useScrollToTop(flatListRef);
 
@@ -33,24 +28,33 @@ export function HomeScreen() {
 
   return (
     <Screen style={$screen}>
-      <FlatList
-        ref={flatListRef}
-        contentContainerStyle={{flexGrow: 1}}
-        showsVerticalScrollIndicator={false}
-        data={postList}
+      <InfinityScrollList
+        queryKey={QueryKeys.PostList}
+        getList={postService.getList}
         renderItem={renderItem}
-        onEndReached={fetchNextPage}
-        onEndReachedThreshold={0.1}
-        refreshing={isLoading}
-        refreshControl={
-          <RefreshControl refreshing={isLoading} onRefresh={refresh} />
-        }
-        ListHeaderComponent={<HomeHeader />}
-        ListEmptyComponent={
-          <HomeEmpty loading={isLoading} error={isError} refetch={refresh} />
-        }
-        keyExtractor={item => item.id.toString()}
+        flatListProps={{ListHeaderComponent: <HomeHeader />}}
       />
+
+      {/*///// BEFORE INFINITY SCROLL*/}
+
+      {/*<FlatList*/}
+      {/*  ref={flatListRef}*/}
+      {/*  contentContainerStyle={{flexGrow: 1}}*/}
+      {/*  showsVerticalScrollIndicator={false}*/}
+      {/*  data={postList}*/}
+      {/*  renderItem={renderItem}*/}
+      {/*  onEndReached={fetchNextPage}*/}
+      {/*  onEndReachedThreshold={0.1}*/}
+      {/*  refreshing={isLoading}*/}
+      {/*  refreshControl={*/}
+      {/*    <RefreshControl refreshing={isLoading} onRefresh={refresh} />*/}
+      {/*  }*/}
+      {/*  ListHeaderComponent={<HomeHeader />}*/}
+      {/*  ListEmptyComponent={*/}
+      {/*    <HomeEmpty loading={isLoading} error={isError} refetch={refresh} />*/}
+      {/*  }*/}
+      {/*  keyExtractor={item => item.id.toString()}*/}
+      {/*/>*/}
     </Screen>
   );
 }
