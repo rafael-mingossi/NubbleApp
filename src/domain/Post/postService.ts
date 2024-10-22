@@ -20,7 +20,14 @@ async function createPost(
   return postAdapter.toPost(postApiData);
 }
 
+async function getById(postId: number): Promise<Post> {
+  // eslint-disable-next-line testing-library/no-await-sync-queries
+  const postApiData = await postApi.getById(postId.toString());
+  return postAdapter.toPost(postApiData);
+}
+
 export const postService = {
   getList,
   createPost,
+  getById,
 };
