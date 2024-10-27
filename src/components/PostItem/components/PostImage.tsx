@@ -12,7 +12,7 @@ export function PostImage({imageURL}: Props) {
       resizeMode="cover"
       style={{
         width: Dimensions.get('window').width,
-        height: 300,
+        aspectRatio: 1,
         marginHorizontal: -24,
       }}
     />
