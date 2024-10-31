@@ -39,7 +39,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build APK
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleRelease --stacktrace --info
         env:
           NUBBLE_STORE_PASSWORD: ${{secrets.ANDROID_STORE_PASSWORD}}
           NUBBLE_ALIAS_PASSWORD: ${{secrets.ANDROID_KEY_ALIAS}}
