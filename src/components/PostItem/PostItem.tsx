@@ -10,9 +10,10 @@ import {PostImage} from './components/PostImage.tsx';
 
 interface Props {
   post: Post;
+  hideCommentAction?: boolean;
 }
 
-export function PostItem({post}: Props) {
+export function PostItem({post, hideCommentAction}: Props) {
   return (
     <Box marginBottom="s24" paddingHorizontal="s24">
       <ProfileUser
@@ -23,11 +24,7 @@ export function PostItem({post}: Props) {
         }}
       />
       <PostImage imageURL={post.imageURL} />
-      <PostActions
-        favoriteCount={post.favoriteCount}
-        commentCount={post.commentCount}
-        reactionCount={post.reactionCount}
-      />
+      <PostActions hideCommentAction={hideCommentAction} post={post} />
       <PostBottom
         commentCount={post.commentCount}
         text={post.text}

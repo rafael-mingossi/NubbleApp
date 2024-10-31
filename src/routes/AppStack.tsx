@@ -17,7 +17,7 @@ import {AppTabBottomTabParamList, AppTabNavigator} from './AppTabNavigator.tsx';
 
 export type AppStackParamsList = {
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
-  PostCommentScreen: {postId: number; postAuthorId: number};
+  PostCommentScreen: {postId: number; postAuthorId: number; showPost?: boolean};
   ProfileScreen: {userId: number};
   PublishPostScreen: {imageUri: string};
   SearchScreen: undefined;
