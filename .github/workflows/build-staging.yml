@@ -38,8 +38,14 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      - name: Build APK
-        run: ./gradlew assembleRelease --stacktrace --info
+#      - name: Build APK
+#        run: ./gradlew assembleRelease --stacktrace --info
+      - name: Clean and Build
+        run: |
+          rm -rf ~/.gradle/caches/
+          ./gradlew clean
+          ./gradlew assembleRelease --stacktrace --info
+
         env:
           NUBBLE_STORE_PASSWORD: ${{secrets.ANDROID_STORE_PASSWORD}}
           NUBBLE_ALIAS_PASSWORD: ${{secrets.ANDROID_KEY_ALIAS}}
