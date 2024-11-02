@@ -36,6 +36,7 @@ local.properties
 *.jks
 
 android/google-service-account.json
+google-service-account.json
 
 # node.js
 #
