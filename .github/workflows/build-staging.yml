@@ -1,13 +1,17 @@
 name: Build Staging Version
 
 env:
-  APK_PATH: android/app/build/outputs/apk/release/app-release.apk
+  AAB_PATH: android/app/build/outputs/bundle/release/app-release.aab
 
 on:
   workflow_dispatch:
 
 jobs:
+  run-checks:
+    uses: ./.github/workflows/pull-request-checks.yaml
+
   build-android:
+    needs: run-checks
     runs-on: ubuntu-latest
     timeout-minutes: 30
     defaults:
@@ -38,22 +42,22 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-#      - name: Build APK
-#        run: ./gradlew assembleRelease --stacktrace --info
-      - name: Clean and Build
-        run: |
-          rm -rf ~/.gradle/caches/
-          ./gradlew clean
-          ./gradlew assembleRelease --stacktrace --info
-
+      - name: Build AAB
+        run: ./gradlew bundleRelease
         env:
           NUBBLE_STORE_PASSWORD: ${{secrets.ANDROID_STORE_PASSWORD}}
           NUBBLE_ALIAS_PASSWORD: ${{secrets.ANDROID_KEY_ALIAS}}
           NUBBLE_KEY_PASSWORD: ${{secrets.ANDROID_KEY_PASSWORD}}
 
-      - name: Upload APK to Artifact
+      - name: Decode Google Service Account
+        run: echo ${{secrets.ANDROID_SERVICE_ACCOUNT_BASE64}} | base64 -d > google-service-account.json
+
+      - name: Upload to Google Play
+        run: fastlane upload_internal
+
+      - name: Upload AAB to Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-release.apk
-          path: ${{env.APK_PATH}}
+          name: app-release.aab
+          path: ${{env.AAB_PATH}}
           retention-days: 7
