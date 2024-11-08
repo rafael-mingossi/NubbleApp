@@ -55,9 +55,12 @@ yarn-error.log
 **/fastlane/Preview.html
 **/fastlane/screenshots
 **/fastlane/test_output
+**/fastlane/.env
 
 # Bundle artifact
 *.jsbundle
+
+*dSYM.zip
 
 # Ruby / CocoaPods
 **/Pods/
