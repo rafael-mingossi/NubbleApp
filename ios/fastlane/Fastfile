@@ -21,6 +21,21 @@ platform :ios do
      setup_ci if ENV['CI']
   end
 
+  desc "Update development provisioning profile when new devices have been added"
+    lane :update_dev_profile do
+      match(type: "development", force_for_new_devices: true)
+  end
+
+  desc "Helper for other team members to get the development certificate and profile"
+  lane :get_dev_cert do
+    match(type: "development", readonly: true)
+  end
+
+  desc "Helper for other team members to get the appstore certificate and profile"
+  lane :get_appstore_cert do
+    match(type: "appstore", readonly: true)
+  end
+
   desc "Push a new beta build to TestFlight"
   lane :beta do
 
