@@ -68,4 +68,18 @@ export const buttonPresets: Record<
       content: {colour: 'grayBlack'},
     },
   },
+  gray: {
+    default: {
+      container: {
+        backgroundColor: 'buttonGrayContainer',
+      },
+      content: {colour: 'buttonGrayContent'},
+    },
+    disabled: {
+      container: {
+        backgroundColor: 'gray4',
+      },
+      content: {colour: 'gray2'},
+    },
+  },
 };

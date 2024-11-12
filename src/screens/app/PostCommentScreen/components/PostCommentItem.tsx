@@ -57,7 +57,10 @@ export function PostCommentItem({
         columnGap="s12"
         alignItems="center"
         mb="s16">
-        <ProfileAvatar imageURL={postComment.author.profileURL} />
+        <ProfileAvatar
+          imageURL={postComment.author.profileURL}
+          authorId={postComment.author.id}
+        />
         <Box flex={1}>
           <Text preset="paragraphSmall" bold>
             {postComment.author.userName}
