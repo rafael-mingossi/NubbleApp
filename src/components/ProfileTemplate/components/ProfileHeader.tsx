@@ -3,7 +3,11 @@ import React from 'react';
 import {UserDetails} from '@domain';
 import {useNavigation} from '@react-navigation/native';
 
-import {BackButton, Box, Icon, ProfileAvatar, Text} from '@components';
+import {BackButton} from '../../BackButton/BackButton';
+import {Box} from '../../Box/Box';
+import {Icon} from '../../Icon/Icon';
+import {ProfileAvatar} from '../../ProfileAvatar/ProfileAvatar';
+import {Text} from '../../Text/Text';
 
 import {ProfileButton} from './ProfileButton.tsx';
 import {ProfileMetadata} from './ProfileMetadata';

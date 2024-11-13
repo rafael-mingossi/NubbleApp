@@ -2,7 +2,9 @@ import React from 'react';
 
 import {useNavigation} from '@react-navigation/native';
 
-import {Icon, Text, TouchableOpacityBox} from '@components';
+import {TouchableOpacityBox} from '../Box/Box';
+import {Icon} from '../Icon/Icon';
+import {Text} from '../Text/Text';
 
 const ICON_SIZE = 20;
 

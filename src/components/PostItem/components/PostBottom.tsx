@@ -2,8 +2,10 @@ import React from 'react';
 
 import {Post} from '@domain';
 
-import {Box, Text} from '@components';
 import {useAppNavigation} from '@hooks';
+
+import {Box} from '../../Box/Box';
+import {Text} from '../../Text/Text';
 
 type Props = Pick<Post, 'text' | 'commentCount' | 'author' | 'id'> & {
   hideCommentAction?: boolean;

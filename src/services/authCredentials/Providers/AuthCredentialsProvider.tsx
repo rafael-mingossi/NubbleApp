@@ -6,9 +6,10 @@ import React, {
 } from 'react';
 
 import {registerInterceptor} from '@api';
-import {AuthCredentials, authService} from '@domain';
 import {AuthCredentialsService} from '@services';
 
+import {authService} from '../../../domain/Auth/authService';
+import {AuthCredentials} from '../../../domain/Auth/authTypes';
 import {authCredentialsStorage} from '../authCredentialsStorage.ts';
 
 export const AuthCredentialsContext = createContext<AuthCredentialsService>({

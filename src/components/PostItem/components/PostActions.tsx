@@ -3,8 +3,11 @@ import React from 'react';
 import {Post, useReactToPost} from '@domain';
 import {QueryKeys} from '@infra';
 
-import {Box, Icon, IconProps, Text, TouchableOpacityBox} from '@components';
 import {useAppNavigation} from '@hooks';
+
+import {Box, TouchableOpacityBox} from '../../Box/Box';
+import {Icon, IconProps} from '../../Icon/Icon';
+import {Text} from '../../Text/Text';
 
 type Props = {
   post: Post;

@@ -2,7 +2,7 @@ import React from 'react';
 
 // import {useNavigation} from '@react-navigation/native';
 
-import {Button, ButtonProps} from '@components';
+import {Button, ButtonProps} from '../../Button/Button';
 
 type ButtonVariants = 'myProfile' | 'isFollowing' | 'isNotFollowing';
 

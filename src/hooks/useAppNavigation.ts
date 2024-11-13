@@ -2,7 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {useAuthCredentials} from '@services';
 
-import {AppStackParamsList} from '@routes';
+import {AppStackParamsList} from '../routes/AppStack';
 
 type Params = Omit<AppStackParamsList['PostCommentScreen'], 'showPost'>;
 

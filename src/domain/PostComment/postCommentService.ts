@@ -1,6 +1,8 @@
 import {apiAdapter} from '@api';
-import {PostComment, postCommentAdapter} from '@domain';
 import {Page} from '@types';
+
+import {postCommentAdapter} from '../PostComment/postCommentAdapter';
+import {PostComment} from '../PostComment/postCommentTypes';
 
 import {postCommentApi} from './postCommentApi.ts';
 

@@ -4,7 +4,7 @@ import {authCredentialsStorage} from '@services';
 import {mockUtils, server, userMocked} from '@test';
 import {act, fireEvent, renderScreen, screen} from 'test-utils';
 
-import {AppStack} from '@routes';
+import {AppStack} from '../../../../../routes/AppStack';
 
 jest.unmock('@react-navigation/native');
 

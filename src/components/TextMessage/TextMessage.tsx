@@ -5,8 +5,11 @@ import {
   TextInputProps as RNTextInputProps,
 } from 'react-native';
 
-import {$textInputStyle, Box, Text} from '@components';
 import {useAppTheme} from '@hooks';
+
+import {Box} from '../Box/Box';
+import {Text} from '../Text/Text';
+import {$textInputStyle} from '../TextInput/TextInput';
 
 interface TextMessageProps extends RNTextInputProps {
   onPressSend: (message: string) => void;

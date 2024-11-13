@@ -3,15 +3,15 @@ import {GestureResponderEvent} from 'react-native';
 
 import {User} from '@domain';
 
-import {
-  PressableBox,
-  ProfileAvatar,
-  Text,
-  PressableBoxProps,
-  ProfileAvatarProps,
-  Box,
-} from '@components';
 import {useAppNavigation} from '@hooks';
+
+import {PressableBox, PressableBoxProps} from '../Box/Box';
+import {Box} from '../Box/Box';
+import {
+  ProfileAvatar,
+  ProfileAvatarProps,
+} from '../ProfileAvatar/ProfileAvatar';
+import {Text} from '../Text/Text';
 
 type ProfileUserProps = {
   user: Pick<User, 'username' | 'profileUrl' | 'id'>;

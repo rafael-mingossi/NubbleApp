@@ -1,7 +1,9 @@
-import {Post, postService} from '@domain';
 import {MutationOptions, QueryKeys} from '@infra';
 import {ImageForUpload, multimediaService} from '@services';
 import {useMutation, useQueryClient} from '@tanstack/react-query';
+
+import {postService} from '../postService';
+import {Post} from '../postTypes';
 
 export function usePostCreate(options?: MutationOptions<Post>) {
   const queryClient = useQueryClient();

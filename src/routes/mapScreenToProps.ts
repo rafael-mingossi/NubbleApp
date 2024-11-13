@@ -1,5 +1,6 @@
 import {IconProps} from '@components';
-import {AppTabBottomTabParamList} from '@routes';
+
+import {AppTabBottomTabParamList} from '../routes/AppTabNavigator';
 
 export const mapScreenToProps: Record<
   keyof AppTabBottomTabParamList,

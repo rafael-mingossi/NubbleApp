@@ -1,6 +1,9 @@
 import React from 'react';
 
-import {BackButton, Box, BoxProps, ScreenProps, Text} from '@components';
+import {BackButton} from '../../BackButton/BackButton';
+import {Box, BoxProps} from '../../Box/Box';
+import {Text} from '../../Text/Text';
+import {ScreenProps} from '../Screen';
 
 type Props = Pick<ScreenProps, 'title' | 'canGoBack' | 'HeaderComponent'> &
   BoxProps;
