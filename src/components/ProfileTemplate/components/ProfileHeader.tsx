@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {User} from '@domain';
+import {UserDetails} from '@domain';
 import {useNavigation} from '@react-navigation/native';
 
 import {BackButton, Box, Icon, ProfileAvatar, Text} from '@components';
@@ -9,29 +9,33 @@ import {ProfileButton} from './ProfileButton.tsx';
 import {ProfileMetadata} from './ProfileMetadata';
 
 type Props = {
-  user: User;
+  userDetails: UserDetails;
   isMyProfile?: boolean;
   publicationCount: string;
 };
-export function ProfileHeader({user, isMyProfile, publicationCount}: Props) {
+export function ProfileHeader({
+  userDetails,
+  isMyProfile,
+  publicationCount,
+}: Props) {
   const navigation = useNavigation();
   return (
     <Box paddingHorizontal="s24">
       <Box alignItems="center">
         <ProfileAvatar
-          imageURL={user?.profileUrl}
+          imageURL={userDetails?.profileUrl}
           size={100}
           borderRadius={40}
         />
         <Text preset="headingMedium" mt="s16">
-          {user.fullName}
+          {userDetails.fullName}
         </Text>
         <Text preset="paragraphLarge" mt="s4" color="gray1">
-          @{user.username}
+          @{userDetails.username}
         </Text>
         <ProfileMetadata
-          followersCount={user.meta.followersCount}
-          followingCount={user.meta.followingCount}
+          followersCount={userDetails.meta.followersCount}
+          followingCount={userDetails.meta.followingCount}
           publicationCount={publicationCount}
         />
         {isMyProfile ? (
@@ -51,7 +55,7 @@ export function ProfileHeader({user, isMyProfile, publicationCount}: Props) {
       <ProfileButton
         userId={1} //CHANGE
         isMyProfile={isMyProfile}
-        isFollowing={true}
+        isFollowing={userDetails.isFollowing}
       />
     </Box>
   );

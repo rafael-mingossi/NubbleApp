@@ -47,7 +47,7 @@ export function ProfileTemplate({userId, isMyProfile}: Props) {
     }
     return (
       <ProfileHeader
-        user={user}
+        userDetails={user}
         isMyProfile={isMyProfile}
         publicationCount={publicationCount.toString()}
       />

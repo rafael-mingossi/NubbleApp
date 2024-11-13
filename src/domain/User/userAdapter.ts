@@ -1,4 +1,4 @@
-import {User, UserAPI} from '@domain';
+import {User, UserAPI, UserDetails} from '@domain';
 
 function toUser(userAPI: UserAPI): User {
   return {
@@ -17,6 +17,14 @@ function toUser(userAPI: UserAPI): User {
   };
 }
 
+function toUserDetails(userAPI: UserAPI, isFollowing: boolean): UserDetails {
+  return {
+    ...toUser(userAPI),
+    isFollowing,
+  };
+}
+
 export const userAdapter = {
   toUser,
+  toUserDetails,
 };

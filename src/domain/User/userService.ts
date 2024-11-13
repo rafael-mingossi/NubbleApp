@@ -1,12 +1,13 @@
 import {apiAdapter} from '@api';
-import {User, userAdapter} from '@domain';
+import {User, userAdapter, UserDetails} from '@domain';
 import {Page} from '@types';
 
 import {userApi} from './userApi.ts';
 
-async function getById(id: number): Promise<User> {
+async function getById(id: number): Promise<UserDetails> {
   const userAPI = await userApi?.getById(id.toString());
-  return userAdapter.toUser(userAPI);
+  const {isFollowing} = await userApi.isFollowing(id.toString());
+  return userAdapter.toUserDetails(userAPI, isFollowing);
 }
 
 async function searchUser(search: string): Promise<Page<User>> {
