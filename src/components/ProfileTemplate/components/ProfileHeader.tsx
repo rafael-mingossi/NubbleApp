@@ -57,7 +57,7 @@ export function ProfileHeader({
         )}
       </Box>
       <ProfileButton
-        userId={1} //CHANGE
+        userId={userDetails.id}
         isMyProfile={isMyProfile}
         isFollowing={userDetails.isFollowing}
       />
