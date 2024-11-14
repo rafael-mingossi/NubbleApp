@@ -1,6 +1,8 @@
-import {api, PageAPI, PageParams} from '@api';
+import {PageAPI, PageParams} from '@api';
 import {PostAPI} from '@domain';
 import {ImageForUpload} from '@services';
+
+import {api} from '../../api/apiInstance';
 
 async function getList(
   params?: PageParams & {userId?: number},

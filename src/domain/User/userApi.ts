@@ -1,4 +1,6 @@
-import {api, PageAPI} from '@api';
+import {PageAPI} from '@api';
+
+import {api} from '../../api/apiInstance';
 
 import {UserAPI} from './userTypes';
 

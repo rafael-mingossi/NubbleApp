@@ -1,6 +1,8 @@
-import {BASE_URL, PageAPI} from '@api';
+import {PageAPI} from '@api';
 import {USER_PATH, UserAPI} from '@domain';
 import {http, HttpResponse} from 'msw';
+
+import {BASE_URL} from '../../../api/apiInstance.ts';
 
 import {mockedPostResponse} from './postMocked.ts';
 import {userMocked} from './userMocked.ts';

@@ -1,14 +1,7 @@
-import axios from 'axios';
-
 import {authService} from '../domain/Auth/authService';
 import {AuthCredentials} from '../domain/Auth/authTypes';
 
-// export const BASE_URL = 'http://192.168.1.100:3333/';
-export const BASE_URL = 'http://127.0.0.1:3333/';
-// export const BASE_URL = 'https://nubble-api.coffstack.com.br/';
-export const api = axios.create({
-  baseURL: BASE_URL,
-});
+import {api} from './apiInstance';
 
 type InterceptorProps = {
   authCredentials: AuthCredentials | null;

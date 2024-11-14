@@ -1,4 +1,4 @@
-import {api} from '@api';
+import {api} from '../../api/apiInstance';
 
 import {authAdapter} from './authAdapter';
 import {authApi} from './authApi';

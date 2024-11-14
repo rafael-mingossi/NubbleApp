@@ -1,4 +1,6 @@
-import {api, PageAPI, PageParams} from '@api';
+import {PageAPI, PageParams} from '@api';
+
+import {api} from '../../api/apiInstance';
 
 import {
   PostReactionAPI,
