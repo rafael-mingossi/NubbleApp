@@ -3,6 +3,7 @@ export * from './BackButton/BackButton';
 export * from './Box/Box';
 export * from './Button/Button';
 export * from './Icon/Icon';
+export * from './InputButton/InputButton';
 export * from './InfinityScrollList/InfinityScrollList';
 export * from './PasswordInput/PasswordInput';
 export * from './PermissionsManager/PermissionsManager';
