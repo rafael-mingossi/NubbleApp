@@ -1,6 +1,8 @@
 import React from 'react';
 
-import {Box, RadioButton, RadioButtonProps, Text} from '@components';
+import {Box} from '../Box/Box';
+import {RadioButton, RadioButtonProps} from '../RadioButton/RadioButton';
+import {Text} from '../Text/Text';
 
 export type RadioButtonItemProps = RadioButtonProps & {
   label: string;

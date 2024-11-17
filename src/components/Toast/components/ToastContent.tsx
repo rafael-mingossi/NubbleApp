@@ -3,8 +3,11 @@ import {Dimensions} from 'react-native';
 
 import {Toast, ToastType, ToastPosition} from '@services';
 
-import {Box, BoxProps, Icon, IconProps, Text} from '@components';
 import {$shadowProps} from '@theme';
+
+import {Box, BoxProps} from '../../Box/Box';
+import {Icon, IconProps} from '../../Icon/Icon';
+import {Text} from '../../Text/Text';
 
 const MAX_WIDTH = Dimensions.get('screen').width * 0.9;
 

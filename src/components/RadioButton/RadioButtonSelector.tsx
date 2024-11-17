@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {Box, Separator} from '@components';
+import {Box} from '../Box/Box';
+import {Separator} from '../Separator/Separator';
 
 import {RadioButtonItem} from './RadioButtonItem.tsx';
 

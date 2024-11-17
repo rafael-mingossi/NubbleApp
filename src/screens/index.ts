@@ -7,6 +7,9 @@ export * from './auth/SuccessScreen/SuccessScreen';
 ///APP
 export * from './app/CameraScreen/CameraScreen';
 export * from './app/DarkModeScreen/DarkModeScreen';
+export * from './app/EditEmailScreen/EditEmailScreen';
+export * from './app/EditPasswordScreen/EditPasswordScreen';
+export * from './app/EditProfileScreen/EditProfileScreen';
 export * from './app/FavouritesScreen/FavouritesScreen';
 export * from './app/HomeScreen/HomeScreen';
 export * from './app/MyProfileScreen/MyProfileScreen';

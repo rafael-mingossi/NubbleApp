@@ -1,8 +1,8 @@
-import {api} from '@api';
+import {api} from '../../api/apiInstance';
 
 import {authAdapter} from './authAdapter';
 import {authApi} from './authApi';
-import {AuthCredentials, SignUpData} from './authTypes';
+import {AuthCredentials, EditPasswordParams, SignUpData} from './authTypes';
 
 async function signIn(
   email: string,
@@ -18,8 +18,7 @@ async function signIn(
 }
 
 async function signOut(): Promise<string> {
-  const message = await authApi.signOut();
-  return message;
+  return await authApi.signOut();
 }
 
 async function signUp(signUpData: SignUpData): Promise<void> {
@@ -48,6 +47,11 @@ async function requestNewPassword(email: string): Promise<string> {
   return message;
 }
 
+async function updatePassword(params: EditPasswordParams): Promise<string> {
+  const {message} = await authApi.editPassword(params);
+  return message;
+}
+
 async function authenticateByRefreshToken(
   refreshToken: string,
 ): Promise<AuthCredentials> {
@@ -65,5 +69,6 @@ export const authService = {
   isEmailAvailable,
   requestNewPassword,
   authenticateByRefreshToken,
-  isRefreshTokenRequest: authApi.isRefreshTokenRequest,
+  updatePassword,
+  isRefreshTokenRequest: authApi?.isRefreshTokenRequest,
 };

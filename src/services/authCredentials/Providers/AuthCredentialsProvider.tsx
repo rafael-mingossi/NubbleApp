@@ -6,9 +6,11 @@ import React, {
 } from 'react';
 
 import {registerInterceptor} from '@api';
-import {AuthCredentials, authService} from '@domain';
+import {User} from '@domain';
 import {AuthCredentialsService} from '@services';
 
+import {authService} from '../../../domain/Auth/authService';
+import {AuthCredentials} from '../../../domain/Auth/authTypes';
 import {authCredentialsStorage} from '../authCredentialsStorage.ts';
 
 export const AuthCredentialsContext = createContext<AuthCredentialsService>({
@@ -17,6 +19,7 @@ export const AuthCredentialsContext = createContext<AuthCredentialsService>({
   userId: null,
   saveCredentials: async () => {},
   removeCredentials: async () => {},
+  updateUser: () => {},
 });
 
 export function AuthCredentialsProvider({children}: PropsWithChildren<{}>) {
@@ -60,6 +63,12 @@ export function AuthCredentialsProvider({children}: PropsWithChildren<{}>) {
     setAuthCredentials(ac);
   }
 
+  function updateUser(user: User) {
+    if (authCredentials) {
+      saveCredentials({...authCredentials, user});
+    }
+  }
+
   async function removeCredentials() {
     authService.removeToken();
     await authCredentialsStorage.remove();
@@ -75,6 +84,7 @@ export function AuthCredentialsProvider({children}: PropsWithChildren<{}>) {
         isLoading,
         saveCredentials,
         removeCredentials,
+        updateUser,
         userId,
       }}>
       {children}

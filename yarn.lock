@@ -5110,7 +5110,7 @@ __metadata:
     react-hook-form: "npm:7.43.9"
     react-native: "npm:0.75.4"
     react-native-bootsplash: "npm:^5.4.1"
-    react-native-mmkv: "npm:^2.10.2"
+    react-native-mmkv: "npm:2.12.2"
     react-native-permissions: "npm:^4.1.5"
     react-native-safe-area-context: "npm:4.10.1"
     react-native-screens: "npm:^3.34.0"
@@ -12634,7 +12634,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-mmkv@npm:^2.10.2":
+"react-native-mmkv@npm:2.12.2":
   version: 2.12.2
   resolution: "react-native-mmkv@npm:2.12.2"
   peerDependencies:

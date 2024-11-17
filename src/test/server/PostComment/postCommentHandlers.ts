@@ -1,7 +1,9 @@
-import {BASE_URL, PageAPI} from '@api';
+import {PageAPI} from '@api';
 import {PostCommentAPI, POST_COMMENT_PATH} from '@domain';
 import {cloneDeep} from 'lodash';
 import {http, HttpResponse} from 'msw';
+
+import {BASE_URL} from '../../../api/apiInstance.ts';
 
 import {mockedData} from './mocks';
 

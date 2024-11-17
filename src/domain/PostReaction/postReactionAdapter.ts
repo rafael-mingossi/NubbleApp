@@ -1,4 +1,4 @@
-import {userAdapter} from '@domain';
+import {userAdapter} from '../User/userAdapter';
 
 import {
   PostReaction,

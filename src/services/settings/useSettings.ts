@@ -1,7 +1,7 @@
 import {create} from 'zustand';
-import {persist} from 'zustand/middleware';
+import {createJSONStorage, persist} from 'zustand/middleware';
 
-import {storage} from '../storage';
+import {MMKVStorage} from '../storage';
 
 import {settingsService} from './settingsService.ts';
 import {
@@ -36,7 +36,8 @@ const useSettingsStore = create<SettingsStore>()(
     }),
     {
       name: '@Settings',
-      storage: storage,
+      storage: createJSONStorage(() => MMKVStorage),
+      version: 1,
     },
   ),
 );

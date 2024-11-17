@@ -5,3 +5,4 @@ export * from './userService.ts';
 
 export * from './useCases/useUserGetById.ts';
 export * from './useCases/useUserSearch.ts';
+export * from './useCases/useUserUpdate.ts';

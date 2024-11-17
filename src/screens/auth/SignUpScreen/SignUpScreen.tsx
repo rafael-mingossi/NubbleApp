@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {useAuthSignUp} from '@domain';
+import {authService, useAuthSignUp} from '@domain';
+import {useAsyncValidation} from '@form';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
 
@@ -16,7 +17,6 @@ import {useResetNavigationSuccess} from '@hooks';
 import {AuthScreenProps, AuthStackParamsList} from '@routes';
 
 import {signUpSchema, SignUpSchema} from './signUpSchema.ts';
-import {useAsyncValidation} from './useAsyncValidation.ts';
 
 const resetParam: AuthStackParamsList['SuccessScreen'] = {
   title: 'Your account has been created successfully!',
@@ -49,9 +49,20 @@ export function SignUpScreen({}: AuthScreenProps<'SignUpScreen'>) {
       mode: 'onChange',
     });
 
-  const {usernameValidation, emailValidation} = useAsyncValidation({
+  const usernameValidation = useAsyncValidation({
     watch,
     getFieldState,
+    fieldName: 'username',
+    errorMessage: 'username unavailable',
+    isAvailableFunc: authService.isUserNameAvailable,
+  });
+
+  const emailValidation = useAsyncValidation({
+    watch,
+    getFieldState,
+    fieldName: 'email',
+    errorMessage: 'email unavailable',
+    isAvailableFunc: authService.isEmailAvailable,
   });
 
   function submitForm(formValues: SignUpSchema) {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Box, PressableBox} from '@components';
+import {Box, PressableBox} from '../Box/Box';
 
 export type RadioButtonProps = {
   isSelected: boolean;
